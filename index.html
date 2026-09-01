@@ -1,0 +1,2127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi Mascota Favorita — Nutrición, amor y cuidado para tus regalones</title>
+  <!-- SEO -->
+  <meta name="description" content="Mi Mascota Favorita: alimento premium 100% natural para perros y gatos. Formulado por veterinarios. Envío a todo Chile. Croquetas, snacks y dietas especiales."/>
+  <meta name="keywords" content="alimento mascotas, croquetas perros, croquetas gatos, comida natural mascotas, tienda mascotas Chile"/>
+  <meta name="author" content="Mi Mascota Favorita"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://mimascotafavorita.cl/"/>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://mimascotafavorita.cl/"/>
+  <meta property="og:title" content="Mi Mascota Favorita — Nutrición, amor y cuidado para tus regalones"/>
+  <meta property="og:description" content="Alimento premium 100% natural para perros y gatos. Formulado por veterinarios. Envío a todo Chile."/>
+  <meta property="og:image" content="https://mimascotafavorita.cl/og-image.jpg"/>
+  <meta property="og:locale" content="es_CL"/>
+  <meta property="og:site_name" content="Mi Mascota Favorita"/>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Mi Mascota Favorita"/>
+  <meta name="twitter:description" content="Alimento premium 100% natural para tus regalones."/>
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"PetStore","name":"Mi Mascota Favorita","description":"Tienda de alimentos premium para mascotas","url":"https://mimascotafavorita.cl","telephone":"+56912345678","address":{"@type":"PostalAddress","addressCountry":"CL","addressRegion":"Región Metropolitana"},"openingHours":"Mo-Fr 09:00-18:00","priceRange":"$$"}
+  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>"/>
+  <meta name="theme-color" content="#1A4FAD"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <script src="https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js"></script>
+  <style>
+    :root {
+      --blue:#1A4FAD; --blue-d:#133A84; --blue-l:#E8EEFA;
+      --red:#D42B22; --red-d:#A81F18; --red-l:#FDEAEA;
+      --yellow:#F5B800; --yellow-l:#FFF8E1;
+      --green:#4A8C2A; --green-l:#EBF5E4;
+      --brown:#3D1F0A; --brown-m:#6B3E20; --brown-l:#A0714F;
+      --bg:#FAFAFA; --cream:#FFF9F0; --gray:#F5F5F5; --muted:#6B6B6B;
+      --radius:14px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--brown);overflow-x:hidden;}
+
+    /* ── SHIPPING BAR ── */
+    .shipping-bar{
+      background:var(--green);color:#fff;
+      text-align:center;padding:.55rem 1rem;
+      font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:700;
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      display:flex;align-items:center;justify-content:center;gap:.5rem;
+    }
+    .sb-close{
+      position:absolute;right:1rem;background:none;border:none;
+      color:#fff;font-size:1.1rem;cursor:pointer;opacity:.8;
+      line-height:1;
+    }
+    .sb-close:hover{opacity:1;}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:36px;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 5vw;height:66px;
+      background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.08);
+      transition:top .3s;
+    }
+    nav.bar-hidden{top:0;}
+    .logo-wrap{display:flex;align-items:center;text-decoration:none;}
+    .nav-links{display:flex;gap:1.8rem;list-style:none;}
+    .nav-links a{text-decoration:none;font-size:.95rem;color:var(--brown-m);transition:color .2s;}
+    .nav-links a:hover{color:var(--blue);}
+    .nav-right{display:flex;align-items:center;gap:.8rem;}
+    .search-wrap{position:relative;}
+    .search-input{
+      border:1.5px solid #e0e0e0;border-radius:50px;
+      padding:.45rem 1rem .45rem 2.2rem;
+      font-family:'Lato',sans-serif;font-size:.88rem;
+      outline:none;width:180px;transition:border-color .2s,width .2s;
+    }
+    .search-input:focus{border-color:var(--blue);width:220px;}
+    .search-icon{position:absolute;left:.75rem;top:50%;transform:translateY(-50%);font-size:.9rem;pointer-events:none;}
+    .nav-cta{background:var(--red);color:#fff;padding:.5rem 1.3rem;border-radius:50px;font-size:.9rem;font-weight:700;text-decoration:none;transition:background .2s;font-family:'Nunito',sans-serif;}
+    .nav-cta:hover{background:var(--red-d);}
+    .cart-btn{background:var(--blue-l);border:none;border-radius:50px;padding:.5rem 1rem;font-size:.9rem;color:var(--blue);cursor:pointer;font-weight:700;font-family:'Nunito',sans-serif;display:flex;align-items:center;gap:5px;transition:background .2s;position:relative;}
+    .cart-btn:hover{background:#d0daf7;}
+    .cart-badge{
+      position:absolute;top:-6px;right:-6px;
+      background:var(--red);color:#fff;border-radius:50%;
+      width:18px;height:18px;font-size:.65rem;font-weight:900;
+      display:none;align-items:center;justify-content:center;
+      font-family:'Nunito',sans-serif;
+    }
+    .cart-badge.show{display:flex;}
+
+    /* ── HERO ── */
+    .hero{
+      min-height:100vh;padding:130px 5vw 4rem;
+      display:grid;grid-template-columns:1fr 1fr;
+      align-items:center;gap:3rem;
+      background:linear-gradient(135deg,var(--blue-l) 0%,#fff 55%);
+      position:relative;overflow:hidden;
+    }
+    .hero-deco{position:absolute;border-radius:50%;pointer-events:none;}
+    .hero-deco-1{width:300px;height:300px;background:var(--yellow);opacity:.12;top:-80px;right:28%;}
+    .hero-deco-2{width:180px;height:180px;background:var(--red);opacity:.12;bottom:80px;right:8%;}
+    .hero-deco-3{width:140px;height:140px;background:var(--green);opacity:.12;bottom:0;left:4%;}
+    .hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.05em;padding:.35rem 1rem;border-radius:50px;margin-bottom:1.4rem;font-family:'Nunito',sans-serif;text-transform:uppercase;}
+    .hero h1{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(2.4rem,4.5vw,3.6rem);line-height:1.1;color:var(--blue);margin-bottom:1rem;}
+    .hero h1 .red{color:var(--red);}
+    .hero-tagline{font-size:1.2rem;font-weight:700;color:var(--brown-m);margin-bottom:1rem;font-family:'Nunito',sans-serif;}
+    .hero p.sub{font-size:1.02rem;line-height:1.7;color:var(--muted);max-width:430px;margin-bottom:2rem;}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+    .btn-primary{background:var(--red);color:#fff;padding:.85rem 2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;text-decoration:none;transition:background .2s,transform .15s;display:inline-flex;align-items:center;gap:8px;}
+    .btn-primary:hover{background:var(--red-d);transform:translateY(-2px);}
+    .btn-outline{border:2px solid var(--blue);color:var(--blue);padding:.85rem 2rem;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;text-decoration:none;transition:background .2s,transform .15s;display:inline-flex;align-items:center;gap:8px;background:transparent;}
+    .btn-outline:hover{background:var(--blue-l);transform:translateY(-2px);}
+    .hero-stats{display:flex;gap:2.2rem;margin-top:2.5rem;flex-wrap:wrap;}
+    .stat .stat-num{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.9rem;display:block;color:var(--red);}
+    .stat .stat-lbl{font-size:.82rem;color:var(--muted);}
+    .hero-image{display:flex;justify-content:center;align-items:center;}
+    .hero-logo-img{width:340px;max-width:90%;animation:float 6s ease-in-out infinite;filter:drop-shadow(0 16px 32px rgba(0,0,0,.15));}
+    @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-18px);}}
+
+    /* ── SECTION SHARED ── */
+    section{padding:5.5rem 5vw;}
+    .section-tag{display:inline-block;font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--red);margin-bottom:.6rem;}
+    .section-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.2;color:var(--blue);margin-bottom:.8rem;}
+    .section-sub{font-size:1rem;color:var(--muted);max-width:500px;line-height:1.7;}
+    .section-header{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+
+    /* ── CATEGORIES ── */
+    .cats{background:#fff;}
+    .cats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1rem;}
+    .cat-card{border-radius:var(--radius);padding:1.8rem 1.2rem;cursor:pointer;transition:transform .2s,box-shadow .2s;text-align:center;border:2px solid transparent;}
+    .cat-card:hover,.cat-card.active{transform:translateY(-6px);box-shadow:0 10px 28px rgba(0,0,0,.10);}
+    .cat-card.c-y{background:var(--yellow-l);border-color:var(--yellow);}
+    .cat-card.c-y.active{background:var(--yellow);border-color:#c59300;}
+    .cat-card.c-b{background:var(--blue-l);border-color:#b6c8f7;}
+    .cat-card.c-b.active{background:var(--blue);border-color:var(--blue-d);}
+    .cat-card.c-b.active .cat-name,.cat-card.c-b.active .cat-count{color:#fff;}
+    .cat-card.c-r{background:var(--red-l);border-color:#f7b6b3;}
+    .cat-card.c-r.active{background:var(--red);border-color:var(--red-d);}
+    .cat-card.c-r.active .cat-name,.cat-card.c-r.active .cat-count{color:#fff;}
+    .cat-card.c-g{background:var(--green-l);border-color:#b8dba3;}
+    .cat-card.c-g.active{background:var(--green);border-color:#2e6018;}
+    .cat-card.c-g.active .cat-name,.cat-card.c-g.active .cat-count{color:#fff;}
+    .cat-card.c-br{background:var(--cream);border-color:#e0c8a8;}
+    .cat-icon{font-size:2.8rem;margin-bottom:.8rem;display:block;}
+    .cat-name{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:var(--brown);margin-bottom:.3rem;transition:color .2s;}
+    .cat-count{font-size:.82rem;color:var(--muted);transition:color .2s;}
+
+    /* ── PRODUCTS ── */
+    .products-section{background:var(--gray);}
+    /* Filters */
+    .filter-bar{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.8rem;align-items:center;}
+    .filter-label{font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;color:var(--muted);margin-right:.4rem;}
+    .filter-btn{background:#fff;border:1.5px solid #ddd;border-radius:50px;padding:.4rem 1rem;font-size:.85rem;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;color:var(--brown-m);transition:all .2s;}
+    .filter-btn:hover,.filter-btn.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+    /* Search results */
+    .search-result-bar{background:var(--blue-l);border:1.5px solid #b6c8f7;border-radius:var(--radius);padding:.8rem 1.2rem;margin-bottom:1.2rem;font-size:.9rem;color:var(--blue);font-family:'Nunito',sans-serif;font-weight:700;display:none;}
+    /* Shopify */
+    .shopify-notice{background:#fff;border:2px dashed var(--yellow);border-radius:var(--radius);padding:1.3rem 1.8rem;margin-bottom:2rem;font-size:.9rem;color:var(--brown-m);line-height:1.6;}
+    .shopify-notice strong{color:var(--blue);}
+    .shopify-notice code{background:var(--gray);padding:2px 6px;border-radius:4px;font-size:.83em;}
+    #shopify-products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.4rem;}
+    .demo-products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.4rem;}
+    /* Product card */
+    .product-card{background:#fff;border-radius:var(--radius);overflow:hidden;border:1.5px solid #eee;transition:transform .2s,box-shadow .2s;position:relative;}
+    .product-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,.10);}
+    .product-card.hidden{display:none;}
+    .product-img{height:190px;display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;}
+    .img-y{background:var(--yellow-l);} .img-b{background:var(--blue-l);} .img-r{background:var(--red-l);} .img-g{background:var(--green-l);}
+    /* Badges */
+    .badge-wrap{position:absolute;top:.7rem;left:.7rem;display:flex;flex-direction:column;gap:.3rem;}
+    .badge{display:inline-block;padding:.2rem .6rem;border-radius:50px;font-size:.68rem;font-weight:800;font-family:'Nunito',sans-serif;}
+    .badge-hot{background:var(--red);color:#fff;}
+    .badge-new{background:var(--green);color:#fff;}
+    .badge-sale{background:var(--yellow);color:var(--brown);}
+    .badge-best{background:var(--blue);color:#fff;}
+    /* Stock */
+    .stock-bar{padding:.5rem .9rem;background:#fff8e1;border-top:1px solid #ffe082;}
+    .stock-text{font-size:.78rem;font-family:'Nunito',sans-serif;font-weight:700;color:#b45309;display:flex;align-items:center;gap:4px;}
+    .stock-dot{width:7px;height:7px;border-radius:50%;background:#ef4444;animation:pulse 1.5s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+    .product-body{padding:1.1rem 1.3rem 1.3rem;}
+    .product-tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:.4rem;font-family:'Nunito',sans-serif;}
+    .pt-p{color:#B88A00;} .pt-g{color:var(--blue);} .pt-c{color:var(--green);} .pt-s{color:var(--red);}
+    .product-name{font-family:'Nunito',sans-serif;font-size:1.05rem;font-weight:800;color:var(--brown);margin-bottom:.3rem;}
+    .product-desc{font-size:.87rem;color:var(--muted);margin-bottom:.8rem;line-height:1.5;}
+    /* Price */
+    .price-row{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.8rem;}
+    .product-price{font-family:'Nunito',sans-serif;font-size:1.25rem;font-weight:900;color:var(--red);}
+    .product-price-old{font-size:.9rem;color:var(--muted);text-decoration:line-through;}
+    .product-footer{display:flex;align-items:center;justify-content:space-between;}
+    .add-btn{background:var(--blue);color:#fff;border:none;border-radius:50px;padding:.5rem 1.1rem;font-size:.88rem;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;transition:background .2s,transform .1s;}
+    .add-btn:hover{background:var(--blue-d);}
+    .add-btn:active{transform:scale(.96);}
+    .no-results{text-align:center;padding:4rem 1rem;color:var(--muted);display:none;}
+    .no-results span{font-size:3rem;display:block;margin-bottom:1rem;}
+
+    /* ── WHY ── */
+    .why{background:var(--blue);}
+    .why .section-title{color:#fff;}
+    .why .section-sub{color:rgba(255,255,255,.7);}
+    .why .section-tag{color:var(--yellow);}
+    .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:2.5rem;}
+    .why-card{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.18);border-radius:var(--radius);padding:1.8rem;transition:background .2s;}
+    .why-card:hover{background:rgba(255,255,255,.16);}
+    .why-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.1rem;}
+    .wi-y{background:var(--yellow);} .wi-r{background:var(--red);} .wi-g{background:var(--green);} .wi-w{background:rgba(255,255,255,.2);}
+    .why-title{font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:.5rem;color:#fff;}
+    .why-text{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.6;}
+
+    /* ── QUIZ ── */
+    .quiz-section{background:var(--cream);}
+    .quiz-box{background:#fff;border-radius:20px;padding:2.5rem;border:2px solid var(--blue-l);max-width:680px;margin:0 auto;}
+    .quiz-step{display:none;}
+    .quiz-step.active{display:block;}
+    .quiz-q{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.2rem;color:var(--blue);margin-bottom:1.3rem;}
+    .quiz-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.8rem;}
+    .quiz-opt{
+      background:var(--gray);border:2px solid #eee;border-radius:var(--radius);
+      padding:1rem;text-align:center;cursor:pointer;
+      transition:all .2s;font-family:'Nunito',sans-serif;font-weight:700;font-size:.92rem;
+    }
+    .quiz-opt:hover,.quiz-opt.selected{background:var(--blue-l);border-color:var(--blue);color:var(--blue);}
+    .quiz-opt .qo-icon{font-size:1.8rem;display:block;margin-bottom:.4rem;}
+    .quiz-progress{display:flex;gap:.4rem;margin-bottom:1.5rem;}
+    .qp-dot{flex:1;height:4px;border-radius:2px;background:#eee;transition:background .3s;}
+    .qp-dot.done{background:var(--blue);}
+    .quiz-nav{display:flex;justify-content:space-between;margin-top:1.5rem;}
+    .quiz-back{background:none;border:1.5px solid #ddd;border-radius:50px;padding:.5rem 1.2rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;color:var(--muted);cursor:pointer;transition:border-color .2s;}
+    .quiz-back:hover{border-color:var(--blue);color:var(--blue);}
+    .quiz-next{background:var(--blue);color:#fff;border:none;border-radius:50px;padding:.5rem 1.4rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;transition:background .2s;}
+    .quiz-next:hover{background:var(--blue-d);}
+    .quiz-result{text-align:center;}
+    .quiz-result-icon{font-size:4rem;display:block;margin-bottom:1rem;}
+    .quiz-result-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.4rem;color:var(--blue);margin-bottom:.6rem;}
+    .quiz-result-desc{color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
+    .quiz-result-card{background:var(--blue-l);border:2px solid #b6c8f7;border-radius:var(--radius);padding:1.2rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;text-align:left;}
+    .qrc-icon{font-size:2.5rem;flex-shrink:0;}
+    .qrc-name{font-family:'Nunito',sans-serif;font-weight:800;color:var(--blue);font-size:1rem;}
+    .qrc-desc{font-size:.85rem;color:var(--muted);}
+    .quiz-restart{background:none;border:none;color:var(--blue);font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;text-decoration:underline;margin-top:.5rem;}
+
+    /* ── CALCULADORA ── */
+    .calc-section{background:#fff;}
+    .calc-box{background:var(--blue-l);border-radius:20px;padding:2.5rem;max-width:600px;margin:0 auto;border:2px solid #b6c8f7;}
+    .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:1.5rem;}
+    .calc-field label{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;color:var(--blue);margin-bottom:.4rem;}
+    .calc-field select,.calc-field input[type=number]{width:100%;padding:.7rem 1rem;border:1.5px solid #b6c8f7;border-radius:var(--radius);font-family:'Lato',sans-serif;font-size:.95rem;background:#fff;outline:none;transition:border-color .2s;}
+    .calc-field select:focus,.calc-field input[type=number]:focus{border-color:var(--blue);}
+    .calc-btn{width:100%;background:var(--blue);color:#fff;border:none;border-radius:50px;padding:.9rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:background .2s;}
+    .calc-btn:hover{background:var(--blue-d);}
+    .calc-result{background:#fff;border-radius:var(--radius);padding:1.2rem 1.5rem;margin-top:1.2rem;border:2px solid var(--blue);display:none;}
+    .calc-result-title{font-family:'Nunito',sans-serif;font-weight:800;color:var(--blue);margin-bottom:.5rem;}
+    .calc-result-grams{font-family:'Nunito',sans-serif;font-weight:900;font-size:2rem;color:var(--red);}
+    .calc-result-sub{font-size:.85rem;color:var(--muted);margin-top:.3rem;}
+
+    /* ── TESTIMONIALS ── */
+    .testimonials{background:var(--bg);}
+    .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.3rem;margin-top:2.5rem;}
+    .test-card{border-radius:var(--radius);padding:1.6rem;border:2px solid;}
+    .tc-b{border-color:#b6c8f7;background:var(--blue-l);}
+    .tc-r{border-color:#f7b6b3;background:var(--red-l);}
+    .tc-g{border-color:#b8dba3;background:var(--green-l);}
+    .stars{font-size:1.1rem;margin-bottom:.8rem;color:var(--yellow);}
+    .test-text{font-size:.93rem;color:var(--brown-m);line-height:1.7;margin-bottom:1.1rem;font-style:italic;}
+    .test-author{display:flex;align-items:center;gap:10px;}
+    .author-avatar{width:42px;height:42px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+    .author-name{font-weight:700;font-size:.9rem;color:var(--brown);font-family:'Nunito',sans-serif;}
+    .author-pet{font-size:.8rem;color:var(--muted);}
+
+    /* ── NEWSLETTER ── */
+    .newsletter{background:var(--red);text-align:center;}
+    .newsletter .section-title{color:#fff;}
+    .newsletter p{color:rgba(255,255,255,.85);max-width:460px;margin:0 auto 2rem;line-height:1.7;}
+    .nl-form{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;max-width:460px;margin:0 auto;}
+    .nl-form input{flex:1;min-width:210px;padding:.85rem 1.4rem;border-radius:50px;border:none;font-family:'Lato',sans-serif;font-size:1rem;background:rgba(255,255,255,.2);color:#fff;outline:none;}
+    .nl-form input::placeholder{color:rgba(255,255,255,.65);}
+    .nl-form input:focus{background:rgba(255,255,255,.3);}
+    .nl-form button{background:var(--blue);color:#fff;border:none;border-radius:50px;padding:.85rem 1.8rem;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:background .2s;}
+    .nl-form button:hover{background:var(--blue-d);}
+
+    /* ── FOOTER ── */
+    footer{background:var(--brown);color:rgba(255,255,255,.6);padding:4rem 5vw 2rem;}
+    .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+    .footer-brand p{font-size:.88rem;line-height:1.7;max-width:230px;margin-top:1rem;}
+    .footer-logo img{height:50px;width:auto;filter:brightness(1.1);}
+    .footer-col h4{font-family:'Nunito',sans-serif;font-weight:800;color:#fff;margin-bottom:.9rem;font-size:1rem;}
+    .footer-col ul{list-style:none;}
+    .footer-col li{margin-bottom:.55rem;}
+    .footer-col a{text-decoration:none;color:rgba(255,255,255,.5);font-size:.88rem;transition:color .2s;}
+    .footer-col a:hover{color:var(--yellow);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.82rem;flex-wrap:wrap;gap:1rem;}
+    .footer-bottom a{color:var(--yellow);text-decoration:none;}
+
+    /* ── WHATSAPP BUTTON ── */
+    .wa-btn{
+      position:fixed;bottom:2rem;right:2rem;z-index:150;
+      width:58px;height:58px;border-radius:50%;
+      background:#25D366;box-shadow:0 4px 18px rgba(37,211,102,.45);
+      display:flex;align-items:center;justify-content:center;
+      text-decoration:none;transition:transform .2s,box-shadow .2s;
+      animation:waPulse 2.5s ease-in-out infinite;
+    }
+    .wa-btn:hover{transform:scale(1.12);box-shadow:0 6px 24px rgba(37,211,102,.6);animation:none;}
+    @keyframes waPulse{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.45);}50%{box-shadow:0 4px 32px rgba(37,211,102,.75),0 0 0 8px rgba(37,211,102,.15);}}
+    .wa-btn svg{width:30px;height:30px;fill:#fff;}
+    .wa-tooltip{
+      position:fixed;bottom:2.3rem;right:5.5rem;z-index:150;
+      background:#fff;border-radius:var(--radius);padding:.55rem 1rem;
+      box-shadow:0 4px 16px rgba(0,0,0,.12);
+      font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;color:var(--brown);
+      white-space:nowrap;opacity:0;pointer-events:none;
+      transition:opacity .2s;
+    }
+    .wa-btn:hover + .wa-tooltip{opacity:1;}
+
+    /* ── CART DRAWER ── */
+    .cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s;}
+    .cart-overlay.open{opacity:1;pointer-events:all;}
+    .cart-drawer{position:fixed;right:0;top:0;bottom:0;width:370px;max-width:95vw;background:#fff;z-index:301;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;border-left:2px solid var(--blue-l);}
+    .cart-drawer.open{transform:translateX(0);}
+    .cart-head{padding:1.2rem 1.5rem;background:var(--blue);display:flex;align-items:center;justify-content:space-between;}
+    .cart-head h3{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:900;color:#fff;}
+    .close-btn{background:none;border:none;font-size:1.3rem;cursor:pointer;color:rgba(255,255,255,.8);}
+    .cart-body{flex:1;padding:1.3rem;overflow-y:auto;}
+    .empty-cart{text-align:center;padding:3rem 1rem;color:var(--muted);}
+    .empty-cart .empty-icon{font-size:3.5rem;margin-bottom:.8rem;display:block;}
+    .cart-item{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid #eee;}
+    .cart-item-img{width:58px;height:58px;border-radius:10px;background:var(--gray);display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;}
+    .cart-item-info{flex:1;}
+    .cart-item-name{font-weight:700;font-size:.92rem;margin-bottom:.2rem;font-family:'Nunito',sans-serif;}
+    .cart-item-price{color:var(--red);font-weight:700;font-size:.9rem;}
+    .cart-qty{display:flex;align-items:center;gap:8px;margin-top:.4rem;}
+    .qty-btn{width:26px;height:26px;border-radius:50%;border:1.5px solid #ddd;background:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s;}
+    .qty-btn:hover{background:var(--blue-l);border-color:var(--blue);}
+    .cart-foot{padding:1.3rem;border-top:2px solid var(--blue-l);}
+    .cart-total{display:flex;justify-content:space-between;margin-bottom:.5rem;font-family:'Nunito',sans-serif;font-weight:900;font-size:1.05rem;}
+    .cart-shipping-msg{font-size:.82rem;color:var(--green);font-family:'Nunito',sans-serif;font-weight:700;margin-bottom:1rem;}
+    .checkout-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:50px;padding:1rem;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:900;cursor:pointer;transition:background .2s;}
+    .checkout-btn:hover{background:var(--red-d);}
+
+    /* ── MOBILE ── */
+    @media(max-width:768px){
+      .hero{grid-template-columns:1fr;text-align:center;padding-top:110px;}
+      .hero p.sub{max-width:100%;}
+      .hero-actions{justify-content:center;}
+      .hero-stats{justify-content:center;}
+      .hero-logo-img{width:240px;}
+      .nav-links,.search-wrap{display:none;}
+      .footer-top{grid-template-columns:1fr 1fr;gap:2rem;}
+      .calc-grid{grid-template-columns:1fr;}
+    }
+
+    .logo-tiles{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:44px;height:44px;}
+    .tile{border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+    .tile-y{background:var(--yellow);} .tile-b{background:var(--blue);} .tile-r{background:var(--red);} .tile-g{background:var(--green);}
+    .logo-text .l1{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--blue);line-height:1.1;}
+    .logo-text .l2{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--red);line-height:1.1;}
+    .hero-logo-big{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:310px;height:310px;animation:float 6s ease-in-out infinite;}
+    .hero-tile{border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:5.2rem;box-shadow:0 8px 24px rgba(0,0,0,.13);transition:transform .2s;}
+    .hero-tile:hover{transform:scale(1.06);}
+    .ht-y{background:var(--yellow);} .ht-b{background:var(--blue);} .ht-r{background:var(--red);} .ht-g{background:var(--green);}
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease;}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-l{opacity:0;transform:translateX(-30px);transition:opacity .6s ease,transform .6s ease;}
+    .reveal-l.visible{opacity:1;transform:translateX(0);}
+    .reveal-r{opacity:0;transform:translateX(30px);transition:opacity .6s ease,transform .6s ease;}
+    .reveal-r.visible{opacity:1;transform:translateX(0);}
+    .delay-1{transition-delay:.1s;} .delay-2{transition-delay:.2s;} .delay-3{transition-delay:.3s;} .delay-4{transition-delay:.4s;}
+
+    /* ── TOAST ── */
+    .toast{
+      position:fixed;bottom:6rem;left:50%;transform:translateX(-50%) translateY(20px);
+      background:var(--brown);color:#fff;padding:.7rem 1.4rem;
+      border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;
+      z-index:500;opacity:0;pointer-events:none;
+      transition:opacity .3s,transform .3s;white-space:nowrap;
+      display:flex;align-items:center;gap:.5rem;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+    /* ── WELCOME POPUP ── */
+    .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:600;opacity:0;pointer-events:none;transition:opacity .4s;display:flex;align-items:center;justify-content:center;padding:1rem;}
+    .popup-overlay.show{opacity:1;pointer-events:all;}
+    .popup-box{
+      background:#fff;border-radius:24px;max-width:480px;width:100%;
+      overflow:hidden;transform:scale(.92);transition:transform .4s;
+      position:relative;
+    }
+    .popup-overlay.show .popup-box{transform:scale(1);}
+    .popup-top{background:var(--blue);padding:2.5rem 2rem 2rem;text-align:center;}
+    .popup-emoji{font-size:3.5rem;display:block;margin-bottom:.8rem;}
+    .popup-top h2{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.6rem;color:#fff;margin-bottom:.4rem;}
+    .popup-top p{color:rgba(255,255,255,.8);font-size:.95rem;line-height:1.6;}
+    .popup-discount{
+      background:var(--yellow);color:var(--brown);
+      font-family:'Nunito',sans-serif;font-weight:900;font-size:2.2rem;
+      text-align:center;padding:.8rem;letter-spacing:.05em;
+    }
+    .popup-body{padding:1.5rem 2rem;}
+    .popup-body p{font-size:.9rem;color:var(--muted);text-align:center;margin-bottom:1rem;line-height:1.6;}
+    .popup-form{display:flex;gap:.6rem;flex-wrap:wrap;}
+    .popup-form input{flex:1;min-width:180px;padding:.75rem 1rem;border:1.5px solid #ddd;border-radius:50px;font-family:'Lato',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s;}
+    .popup-form input:focus{border-color:var(--blue);}
+    .popup-form button{background:var(--red);color:#fff;border:none;border-radius:50px;padding:.75rem 1.3rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;transition:background .2s;white-space:nowrap;}
+    .popup-form button:hover{background:var(--red-d);}
+    .popup-close{position:absolute;top:1rem;right:1rem;background:rgba(255,255,255,.2);border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:#fff;transition:background .2s;}
+    .popup-close:hover{background:rgba(255,255,255,.35);}
+    .popup-skip{display:block;text-align:center;margin-top:.8rem;font-size:.82rem;color:var(--muted);cursor:pointer;text-decoration:underline;}
+
+    /* ── MOBILE MENU ── */
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.3rem;}
+    .hamburger span{display:block;width:24px;height:2.5px;background:var(--brown);border-radius:2px;transition:transform .3s,opacity .3s;}
+    .hamburger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+    .mobile-menu{
+      display:none;position:fixed;top:102px;left:0;right:0;bottom:0;
+      background:#fff;z-index:99;padding:2rem 5vw;
+      flex-direction:column;gap:1.5rem;
+      transform:translateX(-100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+      overflow-y:auto;
+    }
+    .mobile-menu.open{transform:translateX(0);}
+    .mobile-menu a{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.3rem;color:var(--brown);text-decoration:none;padding:.8rem 0;border-bottom:1px solid #eee;display:block;}
+    .mobile-menu a:hover{color:var(--blue);}
+    .mobile-menu .mob-cta{background:var(--red);color:#fff;border-radius:50px;padding:.8rem 1.5rem;border-bottom:none;text-align:center;margin-top:.5rem;}
+
+    /* ── TRUST BAR ── */
+    .trust-bar{background:var(--blue);padding:1rem 5vw;}
+    .trust-items{display:flex;justify-content:center;gap:3rem;flex-wrap:wrap;}
+    .trust-item{display:flex;align-items:center;gap:.6rem;color:#fff;font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;}
+    .trust-icon{font-size:1.2rem;}
+
+    /* ── BRANDS STRIP ── */
+    .brands{background:#fff;padding:3rem 5vw;}
+    .brands-title{text-align:center;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;}
+    .brands-grid{display:flex;justify-content:center;align-items:center;gap:2rem;flex-wrap:wrap;}
+    .brand-pill{background:var(--gray);border-radius:50px;padding:.6rem 1.4rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;color:var(--brown-m);transition:background .2s,color .2s;}
+    .brand-pill:hover{background:var(--blue-l);color:var(--blue);}
+    .cert-pill{background:var(--green-l);border:1.5px solid #b8dba3;border-radius:50px;padding:.6rem 1.4rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;color:var(--green);}
+
+    /* ── SUBSCRIPTION SECTION ── */
+    .sub-section{background:var(--cream);}
+    .sub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;margin-top:2.5rem;}
+    .sub-card{background:#fff;border-radius:20px;padding:2rem;border:2px solid #eee;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;}
+    .sub-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,.08);}
+    .sub-card.featured{border-color:var(--blue);position:relative;}
+    .sub-featured-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:.75rem;padding:.3rem 1rem;border-radius:50px;white-space:nowrap;}
+    .sub-icon{font-size:2.5rem;margin-bottom:1rem;display:block;}
+    .sub-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.15rem;color:var(--blue);margin-bottom:.3rem;}
+    .sub-freq{font-size:.82rem;color:var(--muted);margin-bottom:1rem;}
+    .sub-discount{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.8rem;color:var(--red);margin-bottom:.5rem;}
+    .sub-desc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.3rem;}
+    .sub-btn{background:var(--blue);color:#fff;border:none;border-radius:50px;padding:.7rem 1.6rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;transition:background .2s;width:100%;}
+    .sub-btn:hover{background:var(--blue-d);}
+    .sub-card.featured .sub-btn{background:var(--red);}
+    .sub-card.featured .sub-btn:hover{background:var(--red-d);}
+    .sub-perks{list-style:none;margin-bottom:1.2rem;text-align:left;}
+    .sub-perks li{font-size:.85rem;color:var(--brown-m);padding:.3rem 0;display:flex;align-items:center;gap:.5rem;}
+    .sub-perks li::before{content:"✓";color:var(--green);font-weight:900;flex-shrink:0;}
+
+    /* ── CONTACT SECTION ── */
+    .contact-section{background:var(--gray);}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+    .contact-info h3{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.5rem;color:var(--blue);margin-bottom:1rem;}
+    .contact-info p{font-size:.95rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
+    .contact-items{display:flex;flex-direction:column;gap:.8rem;}
+    .contact-item{display:flex;align-items:center;gap:.8rem;font-size:.9rem;color:var(--brown-m);}
+    .contact-item-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+    .ci-blue{background:var(--blue-l);} .ci-green{background:var(--green-l);} .ci-yellow{background:var(--yellow-l);}
+    .contact-socials{display:flex;gap:.8rem;margin-top:1.5rem;}
+    .social-btn{background:var(--blue-l);border:none;border-radius:50px;padding:.5rem 1.1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;color:var(--blue);cursor:pointer;transition:background .2s;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;}
+    .social-btn:hover{background:#d0daf7;}
+    .contact-form-box{background:#fff;border-radius:20px;padding:2rem;border:1.5px solid #eee;}
+    .contact-form-box h3{font-family:'Nunito',sans-serif;font-weight:800;font-size:1.15rem;color:var(--blue);margin-bottom:1.3rem;}
+    .form-group{margin-bottom:1rem;}
+    .form-group label{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;color:var(--brown-m);margin-bottom:.35rem;}
+    .form-group input,.form-group select,.form-group textarea{
+      width:100%;padding:.75rem 1rem;border:1.5px solid #ddd;border-radius:var(--radius);
+      font-family:'Lato',sans-serif;font-size:.92rem;outline:none;
+      transition:border-color .2s;resize:vertical;
+    }
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--blue);}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .form-submit{background:var(--red);color:#fff;border:none;border-radius:50px;padding:.85rem 2rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:background .2s;width:100%;}
+    .form-submit:hover{background:var(--red-d);}
+    .form-success{display:none;background:var(--green-l);border:1.5px solid #b8dba3;border-radius:var(--radius);padding:1rem 1.3rem;color:var(--green);font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;margin-top:.8rem;}
+
+    /* ── PRODUCT MODAL ── */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:400;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;padding:1rem;}
+    .modal-overlay.show{opacity:1;pointer-events:all;}
+    .modal-box{
+      background:#fff;border-radius:24px;max-width:700px;width:100%;
+      max-height:90vh;overflow-y:auto;
+      transform:scale(.94);transition:transform .3s;position:relative;
+    }
+    .modal-overlay.show .modal-box{transform:scale(1);}
+    .modal-top{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+    .modal-img{height:280px;display:flex;align-items:center;justify-content:center;font-size:7rem;border-radius:24px 0 0 0;}
+    .modal-info{padding:2rem 1.8rem 1.5rem;}
+    .modal-tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;font-weight:700;font-family:'Nunito',sans-serif;color:var(--red);margin-bottom:.4rem;}
+    .modal-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.4rem;color:var(--blue);margin-bottom:.5rem;}
+    .modal-price{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.6rem;color:var(--red);margin-bottom:1rem;}
+    .modal-price-old{font-size:1rem;color:var(--muted);text-decoration:line-through;margin-left:.5rem;}
+    .modal-stars{color:var(--yellow);font-size:1rem;margin-bottom:.8rem;}
+    .modal-sizes{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+    .size-btn{border:2px solid #ddd;background:#fff;border-radius:50px;padding:.35rem .9rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;cursor:pointer;transition:all .2s;}
+    .size-btn:hover,.size-btn.active{border-color:var(--blue);color:var(--blue);background:var(--blue-l);}
+    .modal-add{background:var(--red);color:#fff;border:none;border-radius:50px;padding:.8rem 1.8rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;transition:background .2s;width:100%;}
+    .modal-add:hover{background:var(--red-d);}
+    .modal-body{padding:1.5rem 1.8rem;}
+    .modal-tabs{display:flex;gap:0;border-bottom:2px solid #eee;margin-bottom:1.2rem;}
+    .modal-tab{background:none;border:none;padding:.6rem 1.2rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .2s,border-color .2s;}
+    .modal-tab.active{color:var(--blue);border-bottom-color:var(--blue);}
+    .modal-tab-content{display:none;font-size:.9rem;color:var(--brown-m);line-height:1.7;}
+    .modal-tab-content.active{display:block;}
+    .nutr-table{width:100%;border-collapse:collapse;font-size:.88rem;}
+    .nutr-table th{background:var(--blue-l);color:var(--blue);font-family:'Nunito',sans-serif;font-weight:800;padding:.5rem .8rem;text-align:left;}
+    .nutr-table td{padding:.45rem .8rem;border-bottom:1px solid #eee;}
+    .nutr-table tr:last-child td{border:none;}
+    .modal-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,.08);border:none;border-radius:50%;width:32px;height:32px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--brown);transition:background .2s;}
+    .modal-close:hover{background:rgba(0,0,0,.15);}
+
+
+    /* ── AUTH BUTTON IN NAV ── */
+    .auth-btn{background:none;border:1.5px solid #ddd;border-radius:50px;padding:.45rem 1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;color:var(--brown-m);cursor:pointer;display:flex;align-items:center;gap:.5rem;transition:all .2s;position:relative;}
+    .auth-btn:hover{border-color:var(--blue);color:var(--blue);}
+    .auth-btn.logged{border-color:var(--green);color:var(--green);background:var(--green-l);}
+    .user-avatar{width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;font-size:.7rem;font-weight:900;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;}
+    /* dropdown */
+    .user-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:#fff;border-radius:var(--radius);border:1.5px solid #eee;box-shadow:0 8px 28px rgba(0,0,0,.12);min-width:200px;overflow:hidden;z-index:300;display:none;animation:dropIn .2s ease;}
+    @keyframes dropIn{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);}}
+    .user-dropdown.show{display:block;}
+    .dropdown-header{background:var(--blue-l);padding:.8rem 1rem;border-bottom:1px solid #e0e8f8;}
+    .dropdown-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:.95rem;color:var(--blue);}
+    .dropdown-email{font-size:.78rem;color:var(--muted);}
+    .dropdown-item{display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;color:var(--brown-m);cursor:pointer;transition:background .15s;text-decoration:none;}
+    .dropdown-item:hover{background:var(--gray);}
+    .dropdown-item.danger{color:var(--red);}
+    .dropdown-sep{height:1px;background:#eee;margin:.2rem 0;}
+
+    /* ── AUTH MODAL ── */
+    .auth-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:700;opacity:0;pointer-events:none;transition:opacity .35s;display:flex;align-items:center;justify-content:center;padding:1rem;}
+    .auth-overlay.show{opacity:1;pointer-events:all;}
+    .auth-box{background:#fff;border-radius:24px;width:100%;max-width:440px;overflow:hidden;transform:translateY(20px);transition:transform .35s;position:relative;}
+    .auth-overlay.show .auth-box{transform:translateY(0);}
+    .auth-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,.07);border:none;border-radius:50%;width:32px;height:32px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--brown);transition:background .2s;z-index:1;}
+    .auth-close:hover{background:rgba(0,0,0,.14);}
+
+    /* tabs */
+    .auth-tabs{display:grid;grid-template-columns:1fr 1fr;}
+    .auth-tab{background:var(--gray);border:none;padding:1.1rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;color:var(--muted);transition:background .2s,color .2s;}
+    .auth-tab.active{background:#fff;color:var(--blue);}
+    .auth-tab:first-child{border-radius:24px 0 0 0;}
+    .auth-tab:last-child{border-radius:0 24px 0 0;}
+
+    /* panels */
+    .auth-panel{display:none;padding:1.8rem 2rem 2rem;}
+    .auth-panel.active{display:block;}
+    .auth-panel-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.3rem;color:var(--blue);margin-bottom:.3rem;}
+    .auth-panel-sub{font-size:.88rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.5;}
+    .auth-field{margin-bottom:1rem;}
+    .auth-field label{display:block;font-family:'Nunito',sans-serif;font-weight:700;font-size:.82rem;color:var(--brown-m);margin-bottom:.35rem;}
+    .auth-field input{width:100%;padding:.75rem 1rem;border:1.5px solid #ddd;border-radius:var(--radius);font-family:'Lato',sans-serif;font-size:.95rem;outline:none;transition:border-color .2s;}
+    .auth-field input:focus{border-color:var(--blue);}
+    .auth-field input.error{border-color:var(--red);}
+    .field-error{font-size:.78rem;color:var(--red);font-family:'Nunito',sans-serif;font-weight:700;margin-top:.3rem;display:none;}
+    .field-error.show{display:block;}
+    .auth-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+    .auth-submit{width:100%;background:var(--red);color:#fff;border:none;border-radius:50px;padding:.9rem;font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;cursor:pointer;transition:background .2s,transform .15s;margin-top:.5rem;}
+    .auth-submit:hover{background:var(--red-d);transform:translateY(-1px);}
+    .auth-divider{display:flex;align-items:center;gap:.8rem;margin:1rem 0;color:var(--muted);font-size:.82rem;}
+    .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:#eee;}
+    .auth-social{display:flex;gap:.6rem;}
+    .social-auth-btn{flex:1;border:1.5px solid #ddd;background:#fff;border-radius:50px;padding:.7rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;transition:background .2s,border-color .2s;display:flex;align-items:center;justify-content:center;gap:.4rem;}
+    .social-auth-btn:hover{background:var(--gray);border-color:#bbb;}
+    .auth-link{text-align:center;font-size:.83rem;color:var(--muted);margin-top:.9rem;}
+    .auth-link span{color:var(--blue);font-weight:700;cursor:pointer;text-decoration:underline;}
+    .auth-link span:hover{color:var(--blue-d);}
+    .password-wrap{position:relative;}
+    .password-wrap input{padding-right:2.8rem;}
+    .pw-toggle{position:absolute;right:.8rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1rem;color:var(--muted);}
+    /* forgot password */
+    .forgot-link{font-size:.78rem;color:var(--blue);font-weight:700;cursor:pointer;text-align:right;display:block;margin-top:-.4rem;margin-bottom:.8rem;}
+    .forgot-link:hover{text-decoration:underline;}
+    /* success state */
+    .auth-success{text-align:center;padding:2rem;}
+    .auth-success-icon{font-size:4rem;display:block;margin-bottom:1rem;}
+    .auth-success h3{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.3rem;color:var(--green);margin-bottom:.5rem;}
+    .auth-success p{font-size:.9rem;color:var(--muted);line-height:1.6;}
+    /* terms */
+    .auth-terms{display:flex;align-items:flex-start;gap:.5rem;font-size:.8rem;color:var(--muted);margin-bottom:.5rem;}
+    .auth-terms input[type=checkbox]{margin-top:2px;accent-color:var(--blue);flex-shrink:0;}
+    .auth-terms a{color:var(--blue);text-decoration:underline;}
+    /* strength bar */
+    .pw-strength{height:4px;border-radius:2px;margin-top:.4rem;background:#eee;overflow:hidden;}
+    .pw-strength-bar{height:100%;border-radius:2px;width:0%;transition:width .3s,background .3s;}
+    .pw-strength-label{font-size:.72rem;font-family:'Nunito',sans-serif;font-weight:700;margin-top:.3rem;}
+
+    /* profile in mobile menu */
+    .mob-auth{background:var(--blue-l);border-radius:var(--radius);padding:.8rem 1rem;margin-bottom:.5rem;display:flex;align-items:center;gap:.8rem;cursor:pointer;}
+    .mob-auth-name{font-family:'Nunito',sans-serif;font-weight:800;font-size:.95rem;color:var(--blue);}
+    .mob-auth-sub{font-size:.75rem;color:var(--muted);}
+
+    /* ── LOGO TILES (kept from before) ── */
+    .logo-tiles{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:44px;height:44px;}
+    .tile{border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+    .tile-y{background:var(--yellow);} .tile-b{background:var(--blue);} .tile-r{background:var(--red);} .tile-g{background:var(--green);}
+    .logo-text .l1{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--blue);line-height:1.1;}
+    .logo-text .l2{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.1rem;color:var(--red);line-height:1.1;}
+    .hero-logo-big{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:310px;height:310px;animation:float 6s ease-in-out infinite;}
+    .hero-tile{border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:5.2rem;box-shadow:0 8px 24px rgba(0,0,0,.13);transition:transform .2s;}
+    .hero-tile:hover{transform:scale(1.06);}
+    .ht-y{background:var(--yellow);} .ht-b{background:var(--blue);} .ht-r{background:var(--red);} .ht-g{background:var(--green);}
+
+    /* ── MOBILE RESPONSIVE ── */
+    @media(max-width:768px){
+      .hero{grid-template-columns:1fr;text-align:center;padding-top:110px;}
+      .hero p.sub{max-width:100%;}
+      .hero-actions{justify-content:center;}
+      .hero-stats{justify-content:center;}
+      .hero-logo-big{width:220px;height:220px;}
+      .hero-tile{font-size:3.8rem;border-radius:18px;}
+      .nav-links,.search-wrap,.nav-cta{display:none;}
+      .hamburger{display:flex;}
+      .mobile-menu{display:flex;}
+      .footer-top{grid-template-columns:1fr 1fr;gap:2rem;}
+      .contact-grid{grid-template-columns:1fr;}
+      .modal-top{grid-template-columns:1fr;}
+      .modal-img{border-radius:24px 24px 0 0;height:200px;}
+      .form-row{grid-template-columns:1fr;}
+      .trust-items{gap:1rem;}
+      .sub-grid{grid-template-columns:1fr;}
+    }
+  
+    /* ── TOAST VARIANTS ── */
+    .toast{position:fixed;bottom:6rem;left:50%;transform:translateX(-50%) translateY(20px);background:var(--brown);color:#fff;padding:.7rem 1.4rem;border-radius:50px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;z-index:800;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;white-space:nowrap;}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+    .toast.toast-warn{background:#b45309;}
+    .toast.toast-err{background:var(--red);}
+    /* ── INLINE MSGS ── */
+    .inline-msg{display:none;padding:.7rem 1rem;border-radius:var(--radius);font-family:'Nunito',sans-serif;font-weight:700;font-size:.88rem;margin-top:.5rem;}
+    .inline-msg-info{background:var(--blue-l);color:var(--blue);border:1px solid #b6c8f7;}
+    .inline-msg-warn{background:var(--yellow-l);color:#854d0e;border:1px solid var(--yellow);}
+    .inline-msg-ok{background:var(--green-l);color:var(--green);border:1px solid #b8dba3;}
+    /* ── CART REMOVE HOVER ── */
+    .qty-btn:last-child:hover{background:var(--red-l)!important;border-color:var(--red)!important;}
+
+  </style>
+</head>
+<body>
+
+<!-- SHIPPING BAR -->
+<div class="shipping-bar" id="shipping-bar">
+  🚚 Envío GRATIS en compras sobre $30.000 — ¡Solo por esta semana!
+  <button class="sb-close" onclick="closeBar()">✕</button>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#" class="logo-wrap">
+    <div class="logo-tiles">
+      <div class="tile tile-y">🍖</div>
+      <div class="tile tile-b">🐱</div>
+      <div class="tile tile-r">🐶</div>
+      <div class="tile tile-g">🐾</div>
+    </div>
+    <div class="logo-text">
+      <div class="l1">Mi mascota</div>
+      <div class="l2">favorita</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#categorias">Categorías</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#quiz">Recomiéndame</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#testimonios">Reseñas</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú"><span></span><span></span><span></span></button>
+  <div class="nav-right">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" type="text" placeholder="Buscar productos..." id="search-input" oninput="searchProducts(this.value)"/>
+    </div>
+    <a href="#contacto" class="nav-cta">Contáctanos</a>
+    <div style="position:relative;">
+      <button class="auth-btn" id="auth-nav-btn" onclick="handleAuthClick()">
+        <span id="auth-btn-icon">👤</span>
+        <span id="auth-btn-label">Ingresar</span>
+      </button>
+      <div class="user-dropdown" id="user-dropdown">
+        <div class="dropdown-header">
+          <div class="dropdown-name" id="dropdown-name">—</div>
+          <div class="dropdown-email" id="dropdown-email">—</div>
+        </div>
+        <a class="dropdown-item" href="#"><span>📦</span> Mis pedidos</a>
+        <a class="dropdown-item" href="#"><span>🐾</span> Mis mascotas</a>
+        <a class="dropdown-item" href="#suscripcion"><span>🔄</span> Mi suscripción</a>
+        <a class="dropdown-item" href="#"><span>❤️</span> Lista de deseos</a>
+        <div class="dropdown-sep"></div>
+        <div class="dropdown-item danger" onclick="logout()"><span>🚪</span> Cerrar sesión</div>
+      </div>
+    </div>
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒
+      <div class="cart-badge" id="cart-badge">0</div>
+    </button>
+  </div>
+</nav>
+
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+    <div class="mob-auth" onclick="openAuth('login'); toggleMenu();" id="mob-auth-item">
+    <div class="user-avatar" style="background:var(--blue)">👤</div>
+    <div><div class="mob-auth-name" id="mob-auth-name">Iniciar sesión</div><div class="mob-auth-sub" id="mob-auth-sub">o Crear cuenta gratis</div></div>
+  </div>
+  <a href="#categorias" onclick="toggleMenu()">Categorías</a>
+  <a href="#productos" onclick="toggleMenu()">Productos</a>
+  <a href="#quiz" onclick="toggleMenu()">Recomiéndame</a>
+  <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
+  <a href="#testimonios" onclick="toggleMenu()">Reseñas</a>
+  <a href="#suscripcion" onclick="toggleMenu()">Suscripción</a>
+  <a href="#contacto-form" onclick="toggleMenu()">Contacto</a>
+  <a href="#contacto" class="mob-cta">Suscribirme →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-deco hero-deco-1"></div>
+  <div class="hero-deco hero-deco-2"></div>
+  <div class="hero-deco hero-deco-3"></div>
+  <div>
+    <div class="hero-badge">✨ Comida 100% natural y balanceada</div>
+    <h1>El mejor alimento<br/>para tus <span class="red">regalones</span></h1>
+    <p class="hero-tagline">Nutrición, amor y cuidado para tus regalones</p>
+    <p class="sub">Productos premium formulados por veterinarios para que tu mascota viva con energía, salud y felicidad todos los días.</p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn-primary">Ver productos →</a>
+      <a href="#quiz" class="btn-outline">¿Qué necesita mi mascota?</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">+5.000</span><span class="stat-lbl">Mascotas felices</span></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-lbl">Natural</span></div>
+      <div class="stat"><span class="stat-num">4.9★</span><span class="stat-lbl">Calificación</span></div>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="hero-logo-big">
+      <div class="hero-tile ht-y">🍖</div>
+      <div class="hero-tile ht-b">🐱</div>
+      <div class="hero-tile ht-r">🐶</div>
+      <div class="hero-tile ht-g">🐾</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar reveal">
+  <div class="trust-items">
+    <div class="trust-item"><span class="trust-icon">🚚</span> Despacho en 24–48 horas</div>
+    <div class="trust-item"><span class="trust-icon">🔄</span> 30 días para cambios</div>
+    <div class="trust-item"><span class="trust-icon">🔒</span> Pago 100% seguro</div>
+    <div class="trust-item"><span class="trust-icon">🌿</span> Sin conservantes artificiales</div>
+    <div class="trust-item"><span class="trust-icon">👨‍⚕️</span> Avalado por veterinarios</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="cats reveal" id="categorias">
+  <div class="section-header">
+    <div>
+      <span class="section-tag">Explora</span>
+      <h2 class="section-title">Todo lo que tu mascota necesita</h2>
+    </div>
+  </div>
+  <div class="cats-grid">
+    <div class="cat-card c-y" onclick="filterCategory('perros',this)"><span class="cat-icon">🐕</span><div class="cat-name">Perros</div><div class="cat-count">+40 productos</div></div>
+    <div class="cat-card c-b" onclick="filterCategory('gatos',this)"><span class="cat-icon">🐈</span><div class="cat-name">Gatos</div><div class="cat-count">+30 productos</div></div>
+    <div class="cat-card c-g" onclick="filterCategory('cachorros',this)"><span class="cat-icon">🐾</span><div class="cat-name">Cachorros</div><div class="cat-count">+20 productos</div></div>
+    <div class="cat-card c-r" onclick="filterCategory('snacks',this)"><span class="cat-icon">🦴</span><div class="cat-name">Snacks & Premios</div><div class="cat-count">+25 productos</div></div>
+    <div class="cat-card c-br" onclick="filterCategory('especial',this)"><span class="cat-icon">💊</span><div class="cat-name">Dieta Especial</div><div class="cat-count">+15 productos</div></div>
+  </div>
+</section>
+
+<!-- BRANDS & CERTS -->
+<div class="brands reveal">
+  <div class="brands-title">Marcas que distribuimos · Certificaciones</div>
+  <div class="brands-grid">
+    <div class="brand-pill">🐾 Royal Canin</div>
+    <div class="brand-pill">🌿 Hill's Science</div>
+    <div class="brand-pill">🥩 Purina Pro Plan</div>
+    <div class="brand-pill">🐟 Eukanuba</div>
+    <div class="brand-pill">🐶 Advance</div>
+    <div class="cert-pill">✅ SAG Certificado</div>
+    <div class="cert-pill">👨‍⚕️ Aval Veterinario</div>
+    <div class="cert-pill">🌱 Ingredientes Naturales</div>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="products-section reveal" id="productos">
+  <div class="section-header">
+    <div>
+      <span class="section-tag">Tienda Online</span>
+      <h2 class="section-title">Nuestros productos</h2>
+      <p class="section-sub">Conectado con Shopify para una compra 100% segura.</p>
+    </div>
+  </div>
+  <!-- Filter bar -->
+  <div class="filter-bar">
+    <span class="filter-label">Filtrar:</span>
+    <button class="filter-btn active" onclick="applyFilter('todos',this)">Todos</button>
+    <button class="filter-btn" onclick="applyFilter('perros',this)">🐕 Perros</button>
+    <button class="filter-btn" onclick="applyFilter('gatos',this)">🐈 Gatos</button>
+    <button class="filter-btn" onclick="applyFilter('cachorros',this)">🐾 Cachorros</button>
+    <button class="filter-btn" onclick="applyFilter('snacks',this)">🦴 Snacks</button>
+    <button class="filter-btn" onclick="applyFilter('especial',this)">💊 Especial</button>
+    <button class="filter-btn" onclick="applyFilter('oferta',this)">🏷️ Ofertas</button>
+  </div>
+  <div class="search-result-bar" id="search-result-bar"></div>
+  <div class="shopify-notice" id="shopify-setup-notice">
+    <strong>⚙️ Configuración Shopify</strong> — Edita <code>SHOPIFY_CONFIG</code> con tu dominio, Storefront Access Token y Collection ID para mostrar tus productos reales. Mientras tanto se muestran productos de ejemplo.
+  </div>
+  <div id="shopify-products-grid" style="display:none;"></div>
+  <div class="demo-products-grid" id="demo-products">
+  </div>
+
+  <div class="no-results" id="no-results"><span>🔍</span><p>No encontramos productos con ese filtro.<br/>Prueba con otra categoría.</p></div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section reveal" id="quiz">
+  <div class="section-header" style="justify-content:center;text-align:center;flex-direction:column;align-items:center;">
+    <span class="section-tag">Recomendador</span>
+    <h2 class="section-title">¿Qué alimento es ideal para tu mascota?</h2>
+    <p class="section-sub" style="text-align:center;margin:0 auto;">Responde 4 preguntas rápidas y te recomendamos el producto perfecto.</p>
+  </div>
+  <div class="quiz-box">
+    <div class="quiz-progress">
+      <div class="qp-dot done" id="qp0"></div>
+      <div class="qp-dot" id="qp1"></div>
+      <div class="qp-dot" id="qp2"></div>
+      <div class="qp-dot" id="qp3"></div>
+    </div>
+    <!-- Step 0 -->
+    <div class="quiz-step active" id="qs0">
+      <div class="quiz-q">¿Qué tipo de mascota tienes?</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="selectOpt(this,'especie','perro')"><span class="qo-icon">🐕</span>Perro</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'especie','gato')"><span class="qo-icon">🐈</span>Gato</div>
+      </div>
+      <div class="quiz-nav"><div></div><button class="quiz-next" onclick="quizNext(0)">Siguiente →</button></div>
+    </div>
+    <!-- Step 1 -->
+    <div class="quiz-step" id="qs1">
+      <div class="quiz-q">¿Qué edad tiene tu mascota?</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="selectOpt(this,'edad','cachorro')"><span class="qo-icon">🍼</span>Cachorro<br/><small style="font-weight:400;color:var(--muted);">0 – 1 año</small></div>
+        <div class="quiz-opt" onclick="selectOpt(this,'edad','adulto')"><span class="qo-icon">💪</span>Adulto<br/><small style="font-weight:400;color:var(--muted);">1 – 7 años</small></div>
+        <div class="quiz-opt" onclick="selectOpt(this,'edad','senior')"><span class="qo-icon">🧓</span>Senior<br/><small style="font-weight:400;color:var(--muted);">7+ años</small></div>
+      </div>
+      <div class="quiz-nav"><button class="quiz-back" onclick="quizBack(1)">← Atrás</button><button class="quiz-next" onclick="quizNext(1)">Siguiente →</button></div>
+    </div>
+    <!-- Step 2 -->
+    <div class="quiz-step" id="qs2">
+      <div class="quiz-q">¿Tiene alguna necesidad especial?</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="selectOpt(this,'necesidad','ninguna')"><span class="qo-icon">✅</span>Ninguna</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'necesidad','digestiva')"><span class="qo-icon">🫀</span>Digestión sensible</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'necesidad','peso')"><span class="qo-icon">⚖️</span>Control de peso</div>
+        <div class="quiz-opt" onclick="selectOpt(this,'necesidad','articular')"><span class="qo-icon">🦴</span>Articulaciones</div>
+      </div>
+      <div class="quiz-nav"><button class="quiz-back" onclick="quizBack(2)">← Atrás</button><button class="quiz-next" onclick="quizNext(2)">Siguiente →</button></div>
+    </div>
+    <!-- Step 3 -->
+    <div class="quiz-step" id="qs3">
+      <div class="quiz-q">¿Cuánto pesa tu mascota?</div>
+      <div class="quiz-options">
+        <div class="quiz-opt" onclick="selectOpt(this,'peso','pequeño')"><span class="qo-icon">🐭</span>Pequeño<br/><small style="font-weight:400;color:var(--muted);">Hasta 10 kg</small></div>
+        <div class="quiz-opt" onclick="selectOpt(this,'peso','mediano')"><span class="qo-icon">🐕</span>Mediano<br/><small style="font-weight:400;color:var(--muted);">10 – 25 kg</small></div>
+        <div class="quiz-opt" onclick="selectOpt(this,'peso','grande')"><span class="qo-icon">🦮</span>Grande<br/><small style="font-weight:400;color:var(--muted);">25+ kg</small></div>
+      </div>
+      <div class="quiz-nav"><button class="quiz-back" onclick="quizBack(3)">← Atrás</button><button class="quiz-next" onclick="showQuizResult()">Ver recomendación ✨</button></div>
+    </div>
+    <!-- Result -->
+    <div class="quiz-step" id="qs-result">
+      <div class="quiz-result">
+        <span class="quiz-result-icon" id="qr-icon">🎉</span>
+        <div class="quiz-result-title" id="qr-title">¡Tenemos el producto ideal!</div>
+        <div class="quiz-result-desc" id="qr-desc">Basado en las características de tu mascota, te recomendamos:</div>
+        <div id="qr-products"></div>
+        <button class="btn-primary" style="margin:.5rem auto 0;display:inline-flex;" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">Ver todos los productos →</button>
+        <br/><button class="quiz-restart" onclick="restartQuiz()">↺ Hacer de nuevo</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULADORA -->
+<section class="calc-section reveal" id="calculadora">
+  <div class="section-header" style="justify-content:center;text-align:center;flex-direction:column;align-items:center;">
+    <span class="section-tag">Herramienta</span>
+    <h2 class="section-title">Calculadora de porción diaria</h2>
+    <p class="section-sub" style="text-align:center;margin:0 auto;">Ingresa los datos de tu mascota y te decimos exactamente cuánto darle al día.</p>
+  </div>
+  <div class="calc-box">
+    <div class="calc-grid">
+      <div class="calc-field">
+        <label>Tipo de mascota</label>
+        <select id="c-especie"><option value="perro">🐕 Perro</option><option value="gato">🐈 Gato</option></select>
+      </div>
+      <div class="calc-field">
+        <label>Edad</label>
+        <select id="c-edad"><option value="cachorro">Cachorro (0–1 año)</option><option value="adulto">Adulto (1–7 años)</option><option value="senior">Senior (7+ años)</option></select>
+      </div>
+      <div class="calc-field">
+        <label>Peso actual (kg)</label>
+        <input type="number" id="c-peso" min="0.5" max="80" step="0.5" value="10" placeholder="ej: 10"/>
+      </div>
+      <div class="calc-field">
+        <label>Nivel de actividad</label>
+        <select id="c-actividad"><option value="bajo">Bajo (sedentario)</option><option value="normal" selected>Normal</option><option value="alto">Alto (muy activo)</option></select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="calcPortion()">Calcular porción diaria →</button>
+    <div class="calc-result" id="calc-result">
+      <div class="calc-result-title">Porción recomendada para tu mascota:</div>
+      <div class="calc-result-grams" id="calc-grams">— g/día</div>
+      <div class="calc-result-sub" id="calc-sub">Dividida en 2 comidas de — g cada una.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why reveal" id="nosotros">
+  <span class="section-tag">¿Por qué elegirnos?</span>
+  <h2 class="section-title">Comprometidos con la salud de tu mascota</h2>
+  <p class="section-sub">Cada producto es desarrollado junto a veterinarios y nutricionistas especialistas en animales de compañía.</p>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon wi-g">🌿</div><div class="why-title">100% Ingredientes naturales</div><div class="why-text">Sin colorantes artificiales, sin conservantes ni rellenos de baja calidad.</div></div>
+    <div class="why-card"><div class="why-icon wi-w">👨‍⚕️</div><div class="why-title">Avalado por veterinarios</div><div class="why-text">Fórmulas certificadas por especialistas en nutrición animal.</div></div>
+    <div class="why-card"><div class="why-icon wi-y">🚚</div><div class="why-title">Envío a todo Chile</div><div class="why-text">Despacho rápido con seguimiento y empaque eco-friendly a todo el país.</div></div>
+    <div class="why-card"><div class="why-icon wi-r">🔄</div><div class="why-title">Suscripción con descuento</div><div class="why-text">Elige la frecuencia de entrega y ahorra hasta 20% en cada pedido.</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials reveal" id="testimonios">
+  <div class="section-header">
+    <div><span class="section-tag">Reseñas</span><h2 class="section-title">Nuestros clientes adoran a sus regalones</h2></div>
+  </div>
+  <div class="test-grid">
+    <div class="test-card tc-b">
+      <div class="stars">★★★★★</div>
+      <p class="test-text">"Desde que cambiamos a Mi Mascota Favorita, Simba tiene el pelaje mucho más brillante y está lleno de energía. ¡Definitivamente no volvemos atrás!"</p>
+      <div class="test-author"><div class="author-avatar">👩</div><div><div class="author-name">Valentina M.</div><div class="author-pet">Dueña de Simba, Golden Retriever 🐕</div></div></div>
+    </div>
+    <div class="test-card tc-r">
+      <div class="stars">★★★★★</div>
+      <p class="test-text">"Mi gata tenía problemas digestivos hace meses. La fórmula gastrointestinal fue un cambio total. El servicio al cliente es increíble y muy rápido."</p>
+      <div class="test-author"><div class="author-avatar">👨</div><div><div class="author-name">Andrés P.</div><div class="author-pet">Dueño de Luna, Gata Siamesa 🐈</div></div></div>
+    </div>
+    <div class="test-card tc-g">
+      <div class="stars">★★★★★</div>
+      <p class="test-text">"Excelente calidad y precio justo. El envío llegó rapidísimo y el packaging es muy cuidado. Se nota que hay amor real por los animales."</p>
+      <div class="test-author"><div class="author-avatar">👩</div><div><div class="author-name">Catalina R.</div><div class="author-pet">Dueña de Tobi y Mochi 🐾</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSCRIPTION -->
+<section class="sub-section" id="suscripcion">
+  <div class="section-header" style="justify-content:center;flex-direction:column;align-items:center;text-align:center;">
+    <span class="section-tag">Plan Recurrente</span>
+    <h2 class="section-title">Suscríbete y ahorra hasta 20%</h2>
+    <p class="section-sub" style="text-align:center;margin:0 auto;">Elige la frecuencia y recibe el alimento de tu mascota sin preocuparte. Pausa o cancela cuando quieras.</p>
+  </div>
+  <div class="sub-grid reveal">
+    <div class="sub-card">
+      <span class="sub-icon">📦</span>
+      <div class="sub-name">Plan Mensual</div>
+      <div class="sub-freq">Entrega cada 30 días</div>
+      <div class="sub-discount">10% OFF</div>
+      <ul class="sub-perks">
+        <li>Entrega mensual automática</li>
+        <li>10% de descuento permanente</li>
+        <li>Envío gratis siempre</li>
+        <li>Pausa o cancela cuando quieras</li>
+      </ul>
+      <div class="sub-desc">Ideal para quienes prefieren comprar mensualmente y no quedarse sin stock.</div>
+      <button class="sub-btn" onclick="showToast('🚀 Próximamente disponible — escríbenos por WhatsApp')">Suscribirme mensual →</button>
+    </div>
+    <div class="sub-card featured">
+      <div class="sub-featured-badge">⭐ Más popular</div>
+      <span class="sub-icon">🚀</span>
+      <div class="sub-name">Plan Quincenal</div>
+      <div class="sub-freq">Entrega cada 15 días</div>
+      <div class="sub-discount">15% OFF</div>
+      <ul class="sub-perks">
+        <li>Entrega quincenal automática</li>
+        <li>15% de descuento permanente</li>
+        <li>Envío gratis siempre</li>
+        <li>Muestra de snack gratis</li>
+        <li>Pausa o cancela cuando quieras</li>
+      </ul>
+      <div class="sub-desc">El favorito de nuestros clientes. Nunca te quedarás sin alimento y ahorras más.</div>
+      <button class="sub-btn" onclick="showToast('🚀 Próximamente disponible — escríbenos por WhatsApp')">Suscribirme quincenal →</button>
+    </div>
+    <div class="sub-card">
+      <span class="sub-icon">💎</span>
+      <div class="sub-name">Plan Semanal</div>
+      <div class="sub-freq">Entrega cada 7 días</div>
+      <div class="sub-discount">20% OFF</div>
+      <ul class="sub-perks">
+        <li>Entrega semanal automática</li>
+        <li>20% de descuento permanente</li>
+        <li>Envío gratis siempre</li>
+        <li>Muestra de snack gratis</li>
+        <li>Atención preferente</li>
+        <li>Pausa o cancela cuando quieras</li>
+      </ul>
+      <div class="sub-desc">Para familias con varias mascotas o mascotas grandes. El máximo ahorro.</div>
+      <button class="sub-btn" onclick="showToast('🚀 Próximamente disponible — escríbenos por WhatsApp')">Suscribirme semanal →</button>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter" id="contacto">
+  <h2 class="section-title">Únete a la familia</h2>
+  <p>Recibe consejos de nutrición, descuentos exclusivos y novedades directamente en tu correo.</p>
+  <div class="nl-form">
+    <input type="email" id="nl-email" placeholder="tucorreo@ejemplo.com"/>
+    <button onclick="submitNewsletter('nl-email')">Suscribirme →</button>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-section" id="contacto-form">
+  <div class="section-header">
+    <div>
+      <span class="section-tag">Contacto</span>
+      <h2 class="section-title">¿Tienes preguntas? Escríbenos</h2>
+      <p class="section-sub">Respondemos en menos de 24 horas hábiles. También puedes escribirnos por WhatsApp.</p>
+    </div>
+  </div>
+  <div class="contact-grid reveal">
+    <div class="contact-info">
+      <h3>Estamos para ayudarte 🐾</h3>
+      <p>Nuestro equipo de expertos en nutrición animal está listo para resolver todas tus dudas sobre los productos, ingredientes, envíos y más.</p>
+      <div class="contact-items">
+        <div class="contact-item"><div class="contact-item-icon ci-blue">📞</div><span>+56 9 1234 5678</span></div>
+        <div class="contact-item"><div class="contact-item-icon ci-green">📧</div><span>hola@mimascotafavorita.cl</span></div>
+        <div class="contact-item"><div class="contact-item-icon ci-yellow">🕐</div><span>Lunes a Viernes, 9:00 – 18:00 hrs</span></div>
+        <div class="contact-item"><div class="contact-item-icon ci-blue">📍</div><span>Santiago, Chile — Envíos a todo el país</span></div>
+      </div>
+      <div class="contact-socials">
+        <a href="#" class="social-btn">📷 Instagram</a>
+        <a href="#" class="social-btn">👤 Facebook</a>
+        <a href="https://wa.me/56912345678" class="social-btn">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div class="contact-form-box">
+      <h3>Envíanos un mensaje</h3>
+      <div id="contact-form">
+        <div class="form-row">
+          <div class="form-group"><label>Nombre</label><input type="text" id="cf-nombre" placeholder="Tu nombre"/></div>
+          <div class="form-group"><label>Teléfono</label><input type="tel" id="cf-telefono" placeholder="+56 9..."/></div>
+        </div>
+        <div class="form-group"><label>Email</label><input type="email" id="cf-email" placeholder="tucorreo@ejemplo.com"/></div>
+        <div class="form-group"><label>Asunto</label>
+          <select id="cf-asunto">
+            <option value="">Selecciona un tema...</option>
+            <option>Consulta sobre productos</option>
+            <option>Estado de mi pedido</option>
+            <option>Cambios y devoluciones</option>
+            <option>Asesoría nutricional</option>
+            <option>Suscripciones</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Mensaje</label><textarea id="cf-mensaje" rows="4" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea></div>
+        <button class="form-submit" onclick="submitContact()">Enviar mensaje →</button>
+        <div class="form-success" id="form-success">✅ ¡Mensaje enviado! Te responderemos pronto.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">
+        <div class="logo-tiles">
+          <div class="tile tile-y">🍖</div>
+          <div class="tile tile-b">🐱</div>
+          <div class="tile tile-r">🐶</div>
+          <div class="tile tile-g">🐾</div>
+        </div>
+        <div class="logo-text">
+          <div class="l1">Mi mascota</div>
+          <div class="l2">favorita</div>
+        </div>
+      </a>
+      <p>Nutrición, amor y cuidado para tus regalones. Alimento premium para mascotas hecho con ingredientes naturales.</p>
+    </div>
+    <div class="footer-col"><h4>Tienda</h4><ul><li><a href="#categorias">Perros</a></li><li><a href="#categorias">Gatos</a></li><li><a href="#categorias">Cachorros</a></li><li><a href="#categorias">Snacks</a></li></ul></div>
+    <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#nosotros">Nosotros</a></li><li><a href="#">Blog</a></li><li><a href="#">Trabaja con nosotros</a></li><li><a href="#">Prensa</a></li></ul></div>
+    <div class="footer-col"><h4>Ayuda</h4><ul><li><a href="#">Seguir pedido</a></li><li><a href="#">Política de cambios</a></li><li><a href="#">Preguntas frecuentes</a></li><li><a href="#contacto">Contacto</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Mi Mascota Favorita. Todos los derechos reservados.</span>
+    <span>Hecho con ❤️ para los regalones de Chile · <a href="#">Privacidad</a> · <a href="#">Términos</a></span>
+  </div>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-top">
+      <div class="modal-img" id="modal-img-bg"><span id="modal-emoji" style="font-size:7rem">🥩</span></div>
+      <div class="modal-info">
+        <div class="modal-tag" id="modal-tag">Perros · Adultos</div>
+        <div class="modal-name" id="modal-name">Croquetas Cordero & Arroz</div>
+        <div class="modal-stars">★★★★★ <span style="font-size:.8rem;color:var(--muted);font-family:'Lato'">(48 reseñas)</span></div>
+        <div style="display:flex;align-items:baseline;gap:.5rem;margin-bottom:1rem;">
+          <div class="modal-price" id="modal-price">$18.990</div>
+          <div class="modal-price-old" id="modal-price-old"></div>
+        </div>
+        <div style="font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;color:var(--blue);margin-bottom:.5rem;">Tamaño de bolsa:</div>
+        <div class="modal-sizes">
+          <button class="size-btn active">1 kg</button>
+          <button class="size-btn" onclick="this.closest('.modal-sizes').querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">3 kg</button>
+          <button class="size-btn" onclick="this.closest('.modal-sizes').querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">7.5 kg</button>
+          <button class="size-btn" onclick="this.closest('.modal-sizes').querySelectorAll('.size-btn').forEach(b=>b.classList.remove('active'));this.classList.add('active')">15 kg</button>
+        </div>
+        <button class="modal-add" id="modal-add-btn" onclick="addFromModal()">🛒 Agregar al carrito</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchTab(this,'desc')">Descripción</button>
+        <button class="modal-tab" onclick="switchTab(this,'ingr')">Ingredientes</button>
+        <button class="modal-tab" onclick="switchTab(this,'nutr')">Tabla nutricional</button>
+      </div>
+      <div class="modal-tab-content active" id="tab-desc" id="modal-desc">Fórmula balanceada con proteína de primera calidad, arroz integral de fácil digestión y vegetales frescos. Sin colorantes, saborizantes ni conservantes artificiales. Ideal para perros adultos de todas las razas que buscan una alimentación completa y saludable.</div>
+      <div class="modal-tab-content" id="tab-ingr">Harina de cordero (28%), arroz integral, avena, grasa de pollo, fibra de remolacha, aceite de salmón (omega-3), zanahoria deshidratada, arándano deshidratado, vitamina A, vitamina D3, vitamina E, taurina, glucosamina, condroitina.</div>
+      <div class="modal-tab-content" id="tab-nutr">
+        <table class="nutr-table">
+          <tr><th>Nutriente</th><th>Por 100g</th></tr>
+          <tr><td>Proteínas</td><td>28%</td></tr>
+          <tr><td>Grasas</td><td>16%</td></tr>
+          <tr><td>Fibra cruda</td><td>3.5%</td></tr>
+          <tr><td>Humedad</td><td>10%</td></tr>
+          <tr><td>Calcio</td><td>1.2%</td></tr>
+          <tr><td>Fósforo</td><td>0.9%</td></tr>
+          <tr><td>Omega-3</td><td>0.5%</td></tr>
+          <tr><td>Energía</td><td>380 kcal</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/56912345678?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos%20%F0%9F%90%BE" target="_blank" class="wa-btn" title="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div class="wa-tooltip">💬 ¡Escríbenos!</div>
+
+<!-- WELCOME POPUP -->
+<div class="popup-overlay" id="popup-overlay">
+  <div class="popup-box">
+    <button class="popup-close" onclick="closePopup()">✕</button>
+    <div class="popup-top">
+      <span class="popup-emoji">🐾</span>
+      <h2>¡Bienvenido a Mi Mascota Favorita!</h2>
+      <p>Suscríbete a nuestro newsletter y obtén un descuento especial en tu primera compra</p>
+    </div>
+    <div class="popup-discount">10% OFF</div>
+    <div class="popup-body">
+      <p>Ingresa tu email y te enviamos el código de descuento al instante.</p>
+      <div class="popup-form">
+        <input type="email" id="popup-email" placeholder="tucorreo@ejemplo.com"/>
+        <button onclick="claimDiscount()">¡Lo quiero!</button>
+      </div>
+      <span class="popup-skip" onclick="closePopup()">No, gracias — continuar sin descuento</span>
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<!-- AUTH MODAL -->
+<div class="auth-overlay" id="auth-overlay" onclick="authOverlayClick(event)">
+  <div class="auth-box" id="auth-box">
+    <button class="auth-close" onclick="closeAuth()">✕</button>
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login-btn" onclick="switchAuthTab('login')">Iniciar sesión</button>
+      <button class="auth-tab" id="tab-reg-btn" onclick="switchAuthTab('register')">Registrarse</button>
+    </div>
+
+    <!-- LOGIN PANEL -->
+    <div class="auth-panel active" id="panel-login">
+      <div class="auth-panel-title">¡Bienvenido de vuelta! 🐾</div>
+      <div class="auth-panel-sub">Ingresa a tu cuenta para ver tus pedidos y gestionar tu suscripción.</div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="tucorreo@ejemplo.com"/>
+        <div class="field-error" id="login-email-err">Ingresa un email válido.</div>
+      </div>
+      <div class="auth-field">
+        <label>Contraseña</label>
+        <div class="password-wrap">
+          <input type="password" id="login-pass" placeholder="Tu contraseña"/>
+          <button class="pw-toggle" onclick="togglePw('login-pass',this)" type="button">👁️</button>
+        </div>
+        <div class="field-error" id="login-pass-err">La contraseña es requerida.</div>
+      </div>
+      <span class="forgot-link" onclick="showForgot()">¿Olvidaste tu contraseña?</span>
+      <button class="auth-submit" onclick="doLogin()">Iniciar sesión →</button>
+      <div class="auth-divider">o continúa con</div>
+      <div class="auth-social">
+        <button class="social-auth-btn" onclick="socialLogin('Google')">🔵 Google</button>
+        <button class="social-auth-btn" onclick="socialLogin('Facebook')">📘 Facebook</button>
+      </div>
+      <div class="auth-link">¿No tienes cuenta? <span onclick="switchAuthTab('register')">Regístrate gratis</span></div>
+    </div>
+
+    <!-- REGISTER PANEL -->
+    <div class="auth-panel" id="panel-register">
+      <div class="auth-panel-title">Crea tu cuenta 🎉</div>
+      <div class="auth-panel-sub">Únete y obtén 10% OFF en tu primera compra, más acceso a suscripciones.</div>
+      <div class="auth-row">
+        <div class="auth-field">
+          <label>Nombre</label>
+          <input type="text" id="reg-nombre" placeholder="Tu nombre"/>
+          <div class="field-error" id="reg-nombre-err">Ingresa tu nombre.</div>
+        </div>
+        <div class="auth-field">
+          <label>Apellido</label>
+          <input type="text" id="reg-apellido" placeholder="Tu apellido"/>
+        </div>
+      </div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="tucorreo@ejemplo.com"/>
+        <div class="field-error" id="reg-email-err">Ingresa un email válido.</div>
+      </div>
+      <div class="auth-field">
+        <label>Contraseña</label>
+        <div class="password-wrap">
+          <input type="password" id="reg-pass" placeholder="Mínimo 8 caracteres" oninput="checkStrength(this.value)"/>
+          <button class="pw-toggle" onclick="togglePw('reg-pass',this)" type="button">👁️</button>
+        </div>
+        <div class="pw-strength"><div class="pw-strength-bar" id="pw-bar"></div></div>
+        <div class="pw-strength-label" id="pw-label"></div>
+        <div class="field-error" id="reg-pass-err">Mínimo 8 caracteres.</div>
+      </div>
+      <div class="auth-field">
+        <label>Confirmar contraseña</label>
+        <div class="password-wrap">
+          <input type="password" id="reg-pass2" placeholder="Repite tu contraseña"/>
+          <button class="pw-toggle" onclick="togglePw('reg-pass2',this)" type="button">👁️</button>
+        </div>
+        <div class="field-error" id="reg-pass2-err">Las contraseñas no coinciden.</div>
+      </div>
+      <div class="auth-terms">
+        <input type="checkbox" id="reg-terms"/>
+        <label for="reg-terms">Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a></label>
+      </div>
+      <div class="field-error" id="reg-terms-err">Debes aceptar los términos.</div>
+      <button class="auth-submit" onclick="doRegister()">Crear cuenta gratis →</button>
+      <div class="auth-divider">o regístrate con</div>
+      <div class="auth-social">
+        <button class="social-auth-btn" onclick="socialLogin('Google')">🔵 Google</button>
+        <button class="social-auth-btn" onclick="socialLogin('Facebook')">📘 Facebook</button>
+      </div>
+      <div class="auth-link">¿Ya tienes cuenta? <span onclick="switchAuthTab('login')">Inicia sesión</span></div>
+    </div>
+
+    <!-- FORGOT PASSWORD PANEL -->
+    <div class="auth-panel" id="panel-forgot">
+      <div class="auth-panel-title">Recupera tu contraseña 🔑</div>
+      <div class="auth-panel-sub">Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña.</div>
+      <div class="auth-field">
+        <label>Email</label>
+        <input type="email" id="forgot-email" placeholder="tucorreo@ejemplo.com"/>
+        <div class="field-error" id="forgot-email-err">Ingresa un email válido.</div>
+      </div>
+      <button class="auth-submit" onclick="doForgot()">Enviar enlace →</button>
+      <div class="auth-link"><span onclick="switchAuthTab('login')">← Volver al inicio de sesión</span></div>
+    </div>
+
+    <!-- SUCCESS PANEL -->
+    <div class="auth-panel" id="panel-success">
+      <div class="auth-success">
+        <span class="auth-success-icon" id="success-icon">🎉</span>
+        <h3 id="success-title">¡Cuenta creada!</h3>
+        <p id="success-msg">Bienvenido a Mi Mascota Favorita. Ya puedes disfrutar de todos los beneficios.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Producto agregado</div>
+
+<div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-head">
+    <h3>🛒 Tu carrito</h3>
+    <button class="close-btn" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body">
+    <div class="empty-cart"><span class="empty-icon">🐾</span><p>Tu carrito está vacío.<br/>¡Agrega productos para tu regalón!</p></div>
+  </div>
+  <div class="cart-foot" id="cart-foot" style="display:none;">
+    <div class="cart-total"><span>Total:</span><strong id="cart-total">$0</strong></div>
+    <div class="cart-shipping-msg" id="cart-shipping-msg"></div>
+    <div class="inline-msg" id="checkout-msg"></div>
+    <button class="checkout-btn" onclick="goToCheckout()">Finalizar compra →</button>
+  </div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════
+   SHOPIFY CONFIG
+   ══════════════════════════════════════════════════ */
+const SHOPIFY_CONFIG = {
+  domain: 'TU_TIENDA.myshopify.com',
+  storefrontAccessToken: 'TU_STOREFRONT_TOKEN',
+  collectionId: 'TU_COLLECTION_ID',
+};
+
+/* ══════════════════════════════════════════════════
+   SINGLE SOURCE OF TRUTH — PRODUCTS
+   Todas las tarjetas del HTML se generan desde aquí
+   ══════════════════════════════════════════════════ */
+const PRODUCTS = [
+  {
+    id:'p1', cat:'perros', tag:'Perros · Adultos', name:'Croquetas Cordero & Arroz',
+    icon:'🥩', bg:'img-y', badge:'best', badgeLabel:'Más vendido',
+    prices:{ '1 kg':18990, '3 kg':49990, '7.5 kg':109990, '15 kg':199990 },
+    stock: 5,
+    desc:'Fórmula balanceada con proteína de cordero de primera calidad, arroz integral de fácil digestión y vegetales frescos. Sin colorantes, saborizantes ni conservantes artificiales. Ideal para perros adultos de todas las razas.',
+    ingr:'Harina de cordero (28%), arroz integral, avena, grasa de pollo, fibra de remolacha, aceite de salmón (omega-3), zanahoria deshidratada, arándano, vitamina A, D3, E, taurina, glucosamina, condroitina.',
+    nutr:[['Proteínas','28%'],['Grasas','16%'],['Fibra cruda','3.5%'],['Humedad','10%'],['Calcio','1.2%'],['Fósforo','0.9%'],['Omega-3','0.5%'],['Energía','380 kcal/100g']],
+  },
+  {
+    id:'p2', cat:'gatos', tag:'Gatos · Adultos', name:'Croquetas Salmón Premium',
+    icon:'🐟', bg:'img-b', badge:'new', badgeLabel:'Nuevo',
+    prices:{ '1 kg':15490, '3 kg':42990, '7.5 kg':94990, '15 kg':174990 },
+    desc:'Rico en Omega-3 procedente de salmón del Atlántico para un pelaje brillante y sistema inmune fuerte. Bajo en carbohidratos, alto en proteína animal.',
+    ingr:'Harina de salmón (32%), arroz, grasa de pollo, aceite de salmón, taurina, vitamina A, D3, E, biotina, zinc, manganeso.',
+    nutr:[['Proteínas','32%'],['Grasas','14%'],['Fibra cruda','2.5%'],['Humedad','10%'],['Taurina','0.15%'],['Omega-3','1.2%'],['Energía','370 kcal/100g']],
+  },
+  {
+    id:'p3', cat:'cachorros', tag:'Cachorros', name:'Fórmula Cachorro Pollo',
+    icon:'🐓', bg:'img-g', badge:'hot', badgeLabel:'🔥 Top',
+    prices:{ '1 kg':21990, '3 kg':58990, '7.5 kg':124990, '15 kg':219990 },
+    desc:'Desarrollada para el crecimiento saludable de cachorros. Con DHA procedente de aceite de pescado para el desarrollo cerebral, calcio y fósforo en proporción ideal para huesos fuertes.',
+    ingr:'Pollo fresco (25%), harina de pollo (20%), arroz integral, maíz, grasa de pollo, aceite de pescado (DHA), leche descremada, vitamina A, D3, E, calcio, fósforo.',
+    nutr:[['Proteínas','30%'],['Grasas','18%'],['Fibra cruda','3%'],['Humedad','10%'],['Calcio','1.4%'],['Fósforo','1.1%'],['DHA','0.1%'],['Energía','395 kcal/100g']],
+  },
+  {
+    id:'p4', cat:'snacks oferta', tag:'Snacks & Premios', name:'Premios Naturales Mix',
+    icon:'🦴', bg:'img-r', badge:'sale', badgeLabel:'20% OFF',
+    prices:{ '100 g':6390, '250 g':13990, '500 g':24990 },
+    oldPrice:{ '100 g':7990, '250 g':17490, '500 g':31990 },
+    desc:'Snacks deshidratados sin conservantes ni aditivos artificiales. Mezcla de pollo, carne y verduras. Ideales para premiar y entrenar. El 100% natural que tu mascota merece.',
+    ingr:'Pollo deshidratado (40%), vacuno deshidratado (30%), zanahoria deshidratada, camote deshidratado, arándano deshidratado.',
+    nutr:[['Proteínas','45%'],['Grasas','8%'],['Fibra cruda','4%'],['Humedad','14%'],['Energía','320 kcal/100g']],
+  },
+  {
+    id:'p5', cat:'especial gatos', tag:'Dieta Especial', name:'Fórmula Gastrointestinal',
+    icon:'🥦', bg:'img-b', badge:null,
+    prices:{ '1 kg':24900, '3 kg':66900, '7.5 kg':144900 },
+    desc:'Diseñada junto a médicos veterinarios para mascotas con sensibilidad digestiva, colon irritable o intolerancia alimentaria. Prebióticos y probióticos incluidos.',
+    ingr:'Pollo hidrolizado (30%), arroz blanco, almidón de maíz, aceite de girasol, prebiótico FOS, probiótico Lactobacillus, vitamina B12, zinc quelado.',
+    nutr:[['Proteínas','24%'],['Grasas','10%'],['Fibra cruda','2%'],['Humedad','10%'],['Prebióticos','0.5%'],['Energía','350 kcal/100g']],
+  },
+  {
+    id:'p6', cat:'gatos oferta', tag:'Gatos · Senior', name:'Croquetas Senior Antioxidante',
+    icon:'🫐', bg:'img-y', badge:'sale', badgeLabel:'15% OFF',
+    prices:{ '1 kg':14860, '3 kg':40860, '7.5 kg':89860 },
+    oldPrice:{ '1 kg':17490, '3 kg':48990, '7.5 kg':109990 },
+    desc:'Formulada específicamente para gatos mayores de 7 años. Enriquecida con arándanos, vitamina E y selenio para combatir el daño oxidativo. Menos fósforo para proteger los riñones.',
+    ingr:'Harina de pavo (28%), arroz, grasa de pollo, arándano deshidratado, vitamina E, vitamina C, selenio, L-carnitina, taurina, glucosamina.',
+    nutr:[['Proteínas','26%'],['Grasas','12%'],['Fibra cruda','3%'],['Fósforo','0.5%'],['Vitamina E','600 UI/kg'],['Energía','355 kcal/100g']],
+  },
+  {
+    id:'p7', cat:'perros', tag:'Perros · Raza Grande', name:'Fórmula Raza Grande',
+    icon:'🥗', bg:'img-g', badge:null,
+    prices:{ '3 kg':26990, '7.5 kg':54990, '15 kg':89990, '25 kg':134990 },
+    desc:'Específica para razas grandes (25kg+). Croquetas de mayor tamaño para favorecer la masticación. Glucosamina y condroitina para articulaciones sanas. Omega-3 y 6 en proporción ideal.',
+    ingr:'Harina de pollo (30%), maíz, arroz, grasa de pollo, aceite de salmón, glucosamina (600mg/kg), condroitina (400mg/kg), vitamina A, D3, E.',
+    nutr:[['Proteínas','27%'],['Grasas','15%'],['Fibra cruda','3.5%'],['Glucosamina','600mg/kg'],['Condroitina','400mg/kg'],['Energía','375 kcal/100g']],
+  },
+  {
+    id:'p8', cat:'perros especial', tag:'Perros · Control de Peso', name:'Fórmula Light',
+    icon:'⚖️', bg:'img-r', badge:'new', badgeLabel:'Nuevo',
+    prices:{ '1 kg':19490, '3 kg':51990, '7.5 kg':114990 },
+    desc:'Bajo en grasas y calorías para mantener el peso ideal sin sacrificar nutrición. L-carnitina para convertir grasa en energía. Ideal para perros con tendencia al sobrepeso o castrados.',
+    ingr:'Harina de pollo (22%), arroz integral, fibra de remolacha (8%), aceite de girasol, L-carnitina (500mg/kg), vitamina A, D3, E, cromo.',
+    nutr:[['Proteínas','24%'],['Grasas','8%'],['Fibra cruda','8%'],['L-carnitina','500mg/kg'],['Energía','290 kcal/100g']],
+  },
+];
+
+/* ── Render product cards from PRODUCTS array ── */
+function renderProductCards() {
+  const grid = document.getElementById('demo-products');
+  if (!grid) return;
+  grid.innerHTML = PRODUCTS.map(p => {
+    const firstSize = Object.keys(p.prices)[0];
+    const price = p.prices[firstSize];
+    const oldPrice = p.oldPrice ? p.oldPrice[firstSize] : null;
+    const badgeHtml = p.badge ? `<div class="badge-wrap"><span class="badge badge-${p.badge}">${p.badgeLabel}</span></div>` : '';
+    const stockHtml = p.stock ? `<div class="stock-bar"><div class="stock-text"><span class="stock-dot"></span>Solo quedan ${p.stock} unidades</div></div>` : '';
+    const oldHtml = oldPrice ? `<div class="product-price-old">$${oldPrice.toLocaleString('es-CL')}</div>` : '';
+    const catClass = p.cat.includes('perros') ? 'pt-p' : p.cat.includes('gatos') ? 'pt-g' : p.cat.includes('cachorros') ? 'pt-c' : 'pt-s';
+    return `<div class="product-card" data-cat="${p.cat}" data-name="${p.name.toLowerCase()} ${p.tag.toLowerCase()} ${p.cat}" onclick="openModal('${p.id}')">
+      <div class="product-img ${p.bg}">${badgeHtml}${p.icon}</div>
+      ${stockHtml}
+      <div class="product-body">
+        <div class="product-tag ${catClass}">${p.tag}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc.slice(0,90)}...</div>
+        <div class="price-row">
+          <div class="product-price">$${price.toLocaleString('es-CL')}</div>
+          ${oldHtml}
+        </div>
+        <div class="product-footer">
+          <button class="add-btn" onclick="event.stopPropagation();addToCart('${p.name}',${price},'${p.icon}')">+ Agregar</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* ══════════════════════════════════════════════════
+   CART — persiste en localStorage
+   ══════════════════════════════════════════════════ */
+let cart = JSON.parse(localStorage.getItem('mmf_cart') || '[]');
+
+function saveCart() { localStorage.setItem('mmf_cart', JSON.stringify(cart)); }
+
+function addToCart(name, price, icon) {
+  const ex = cart.find(i => i.name === name);
+  if (ex) ex.qty++; else cart.push({ name, price, icon, qty: 1 });
+  saveCart(); renderCart();
+  showToast('✓ ' + name.split(' ').slice(0,2).join(' ') + ' agregado');
+  toggleCart(true);
+}
+
+function renderCart() {
+  const body    = document.getElementById('cart-body');
+  const foot    = document.getElementById('cart-foot');
+  const badge   = document.getElementById('cart-badge');
+  const total   = cart.reduce((s,i) => s + i.price * i.qty, 0);
+  const items   = cart.reduce((s,i) => s + i.qty, 0);
+  badge.textContent = items;
+  badge.classList.toggle('show', items > 0);
+  if (!cart.length) {
+    body.innerHTML = '<div class="empty-cart"><span class="empty-icon">🐾</span><p>Tu carrito está vacío.<br/>¡Agrega productos para tu regalón!</p></div>';
+    foot.style.display = 'none'; return;
+  }
+  document.getElementById('cart-total').textContent = '$' + total.toLocaleString('es-CL');
+  const faltante = 30000 - total;
+  const msg = document.getElementById('cart-shipping-msg');
+  if (faltante > 0) {
+    msg.textContent = '🚚 Agrega $' + faltante.toLocaleString('es-CL') + ' más para envío gratis';
+    msg.style.color = 'var(--brown-m)';
+  } else {
+    msg.textContent = '🎉 ¡Envío gratis desbloqueado!';
+    msg.style.color = 'var(--green)';
+  }
+  foot.style.display = 'block';
+  body.innerHTML = cart.map((item,idx) => `
+    <div class="cart-item">
+      <div class="cart-item-img">${item.icon}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">$${item.price.toLocaleString('es-CL')}</div>
+        <div class="cart-qty">
+          <button class="qty-btn" aria-label="Quitar" onclick="changeQty(${idx},-1)">−</button>
+          <span>${item.qty}</span>
+          <button class="qty-btn" aria-label="Agregar" onclick="changeQty(${idx},1)">+</button>
+          <button class="qty-btn" style="color:var(--red);margin-left:.3rem" aria-label="Eliminar" onclick="removeItem(${idx})">🗑</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function changeQty(idx, d) {
+  cart[idx].qty += d;
+  if (cart[idx].qty <= 0) cart.splice(idx,1);
+  saveCart(); renderCart();
+}
+function removeItem(idx) { cart.splice(idx,1); saveCart(); renderCart(); }
+
+function toggleCart(forceOpen) {
+  const o = document.getElementById('cart-overlay');
+  const d = document.getElementById('cart-drawer');
+  const open = forceOpen !== undefined ? forceOpen : !d.classList.contains('open');
+  o.classList.toggle('open', open); d.classList.toggle('open', open);
+  if (open) document.body.style.overflow = 'hidden';
+  else document.body.style.overflow = '';
+}
+
+function goToCheckout() {
+  if (!cart.length) { showToast('⚠️ Tu carrito está vacío'); return; }
+  if (SHOPIFY_CONFIG.domain.includes('TU_')) {
+    showInlineMsg('checkout-msg', '⚙️ Configura SHOPIFY_CONFIG para activar el checkout real.', 'warn');
+    return;
+  }
+  window.location.href = 'https://' + SHOPIFY_CONFIG.domain + '/cart';
+}
+
+/* ══════════════════════════════════════════════════
+   TOAST (replaces all alert())
+   ══════════════════════════════════════════════════ */
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show' + (type === 'warn' ? ' toast-warn' : type === 'err' ? ' toast-err' : '');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function showInlineMsg(id, msg, type) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'inline-msg inline-msg-' + (type || 'info');
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 4000);
+}
+
+/* ══════════════════════════════════════════════════
+   SHIPPING BAR
+   ══════════════════════════════════════════════════ */
+function closeBar() {
+  document.getElementById('shipping-bar').style.display = 'none';
+  document.getElementById('main-nav').style.top = '0';
+  document.getElementById('mobile-menu').style.top = '66px';
+}
+
+/* ══════════════════════════════════════════════════
+   SEARCH
+   ══════════════════════════════════════════════════ */
+function searchProducts(query) {
+  const q = query.trim().toLowerCase();
+  const cards = document.querySelectorAll('#demo-products .product-card');
+  const bar = document.getElementById('search-result-bar');
+  const noRes = document.getElementById('no-results');
+  let visible = 0;
+  cards.forEach(c => {
+    const match = !q || c.dataset.name.includes(q);
+    c.classList.toggle('hidden', !match);
+    if (match) visible++;
+  });
+  if (q) {
+    bar.style.display = 'block';
+    bar.textContent = visible > 0
+      ? `🔍 ${visible} producto(s) para "${query}"`
+      : `Sin resultados para "${query}"`;
+  } else { bar.style.display = 'none'; }
+  noRes.style.display = visible === 0 && q ? 'block' : 'none';
+}
+
+/* ══════════════════════════════════════════════════
+   FILTERS
+   ══════════════════════════════════════════════════ */
+function applyFilter(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterCards(cat);
+}
+
+function filterCategory(cat, card) {
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+  // Sync filter bar
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    const matches = b.textContent.toLowerCase().replace(/[^a-z]/g,'').includes(cat.replace(/[^a-z]/g,'').slice(0,5));
+    b.classList.toggle('active', matches);
+  });
+  filterCards(cat);
+  document.getElementById('productos').scrollIntoView({ behavior:'smooth' });
+}
+
+function filterCards(cat) {
+  const cards = document.querySelectorAll('#demo-products .product-card');
+  let visible = 0;
+  cards.forEach(c => {
+    const show = cat === 'todos' || c.dataset.cat.split(' ').includes(cat);
+    c.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+}
+
+/* ══════════════════════════════════════════════════
+   PRODUCT MODAL — dynamic per product
+   ══════════════════════════════════════════════════ */
+let modalProduct = null;
+let modalSizes = [];
+let modalSelectedSize = 0;
+
+function openModal(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  modalProduct = p;
+  modalSizes = Object.keys(p.prices);
+  modalSelectedSize = 0;
+
+  document.getElementById('modal-tag').textContent = p.tag;
+  document.getElementById('modal-name').textContent = p.name;
+  document.getElementById('modal-emoji').textContent = p.icon;
+  document.getElementById('modal-img-bg').className = 'modal-img ' + p.bg;
+  document.getElementById('modal-stars').innerHTML = '★★★★★ <span style="font-size:.8rem;color:var(--muted);font-family:\'Lato\'">(48 reseñas)</span>';
+
+  // Sizes
+  const sizesEl = document.getElementById('modal-sizes');
+  sizesEl.innerHTML = modalSizes.map((s, i) => `<button class="size-btn ${i===0?'active':''}" onclick="selectSize(${i})">${s}</button>`).join('');
+
+  updateModalPrice();
+
+  // Tabs
+  document.getElementById('tab-desc').textContent = p.desc;
+  document.getElementById('tab-ingr').textContent = p.ingr;
+  document.getElementById('tab-nutr').innerHTML = `<table class="nutr-table">
+    <tr><th>Nutriente</th><th>Por 100g</th></tr>
+    ${p.nutr.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}
+  </table>`;
+
+  // Reset tabs
+  document.querySelectorAll('.modal-tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-desc').classList.add('active');
+  document.querySelector('.modal-tab').classList.add('active');
+
+  document.getElementById('modal-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function selectSize(i) {
+  modalSelectedSize = i;
+  document.querySelectorAll('#modal-sizes .size-btn').forEach((b,j) => b.classList.toggle('active', j===i));
+  updateModalPrice();
+}
+
+function updateModalPrice() {
+  if (!modalProduct) return;
+  const size = modalSizes[modalSelectedSize];
+  const price = modalProduct.prices[size];
+  const oldPrice = modalProduct.oldPrice ? modalProduct.oldPrice[size] : null;
+  document.getElementById('modal-price').textContent = '$' + price.toLocaleString('es-CL');
+  document.getElementById('modal-price-old').textContent = oldPrice ? '$' + oldPrice.toLocaleString('es-CL') : '';
+}
+
+function addFromModal() {
+  if (!modalProduct) return;
+  const size = modalSizes[modalSelectedSize];
+  const price = modalProduct.prices[size];
+  const label = `${modalProduct.name} (${size})`;
+  addToCart(label, price, modalProduct.icon);
+  closeModal();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
+
+function switchTab(btn, tabId) {
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.modal-tab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + tabId).classList.add('active');
+}
+
+/* ══════════════════════════════════════════════════
+   QUIZ — with validation
+   ══════════════════════════════════════════════════ */
+const quizAnswers = {};
+
+function selectOpt(el, key, val) {
+  el.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  quizAnswers[key] = val;
+}
+
+function quizNext(step) {
+  // Validate: check that something is selected
+  const required = ['especie','edad','necesidad','peso'];
+  const key = required[step];
+  if (!quizAnswers[key]) {
+    showToast('⚠️ Selecciona una opción para continuar');
+    return;
+  }
+  document.getElementById('qs' + step).classList.remove('active');
+  document.getElementById('qs' + (step+1)).classList.add('active');
+  document.getElementById('qp' + (step+1)).classList.add('done');
+}
+
+function quizBack(step) {
+  document.getElementById('qs' + step).classList.remove('active');
+  document.getElementById('qs' + (step-1)).classList.add('active');
+  document.getElementById('qp' + step).classList.remove('done');
+}
+
+function showQuizResult() {
+  if (!quizAnswers['peso']) { showToast('⚠️ Selecciona una opción para continuar'); return; }
+  document.getElementById('qs3').classList.remove('active');
+  document.getElementById('qs-result').classList.add('active');
+  const { especie, edad, necesidad, peso } = quizAnswers;
+  const isPerro = especie === 'perro';
+  let recs = [];
+  if (necesidad === 'digestiva')  recs = ['p5'];
+  else if (necesidad === 'peso')  recs = ['p8'];
+  else if (necesidad === 'articular') recs = ['p7'];
+  else if (edad === 'cachorro')   recs = ['p3'];
+  else if (edad === 'senior')     recs = ['p6'];
+  else if (isPerro && peso === 'grande') recs = ['p7','p1'];
+  else if (isPerro) recs = ['p1'];
+  else recs = ['p2','p6'];
+
+  document.getElementById('qr-icon').textContent = isPerro ? '🐕' : '🐈';
+  document.getElementById('qr-title').textContent = '¡Encontramos el producto ideal!';
+  document.getElementById('qr-desc').textContent = `Para tu ${isPerro?'perro':'gato'} ${edad} de talla ${peso}, te recomendamos:`;
+  document.getElementById('qr-products').innerHTML = recs.map(rid => {
+    const prod = PRODUCTS.find(x => x.id === rid);
+    const firstSize = Object.keys(prod.prices)[0];
+    return `<div class="quiz-result-card">
+      <div class="qrc-icon">${prod.icon}</div>
+      <div>
+        <div class="qrc-name">${prod.name}</div>
+        <div class="qrc-desc">${prod.desc.slice(0,80)}...</div>
+        <button class="add-btn" style="margin-top:.5rem" onclick="addToCart('${prod.name}',${prod.prices[firstSize]},'${prod.icon}')">+ Agregar al carrito</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function restartQuiz() {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('qs0').classList.add('active');
+  document.querySelectorAll('.qp-dot').forEach((d,i) => d.classList.toggle('done', i===0));
+  Object.keys(quizAnswers).forEach(k => delete quizAnswers[k]);
+  document.querySelectorAll('.quiz-opt').forEach(o => o.classList.remove('selected'));
+}
+
+/* ══════════════════════════════════════════════════
+   CALCULATOR
+   ══════════════════════════════════════════════════ */
+function calcPortion() {
+  const peso     = parseFloat(document.getElementById('c-peso').value) || 10;
+  const edad     = document.getElementById('c-edad').value;
+  const especie  = document.getElementById('c-especie').value;
+  const actividad= document.getElementById('c-actividad').value;
+  let base = especie === 'perro' ? peso * 28 : peso * 30;
+  if (edad === 'cachorro') base *= 1.5;
+  else if (edad === 'senior') base *= 0.85;
+  if (actividad === 'bajo') base *= 0.85;
+  else if (actividad === 'alto') base *= 1.2;
+  base = Math.round(base);
+  document.getElementById('calc-grams').textContent = base + ' g/día';
+  document.getElementById('calc-sub').textContent = `Dividida en 2 comidas de ${Math.round(base/2)} g cada una. Siempre con agua fresca disponible.`;
+  document.getElementById('calc-result').style.display = 'block';
+}
+
+/* ══════════════════════════════════════════════════
+   NEWSLETTER
+   ══════════════════════════════════════════════════ */
+function submitNewsletter(inputId) {
+  const email = document.getElementById(inputId).value.trim();
+  if (!email || !email.includes('@')) {
+    showToast('⚠️ Ingresa un email válido', 'warn');
+    return;
+  }
+  document.getElementById(inputId).value = '';
+  showToast('🎉 ¡Suscripción exitosa! Revisa tu correo.');
+}
+
+/* ══════════════════════════════════════════════════
+   CONTACT FORM
+   ══════════════════════════════════════════════════ */
+function submitContact() {
+  const nombre  = document.getElementById('cf-nombre').value.trim();
+  const email   = document.getElementById('cf-email').value.trim();
+  const asunto  = document.getElementById('cf-asunto').value;
+  const mensaje = document.getElementById('cf-mensaje').value.trim();
+  if (!nombre || !email || !mensaje) {
+    showToast('⚠️ Completa todos los campos requeridos', 'warn');
+    return;
+  }
+  if (!email.includes('@')) {
+    showToast('⚠️ Ingresa un email válido', 'warn');
+    return;
+  }
+  document.getElementById('form-success').style.display = 'block';
+  document.getElementById('cf-nombre').value = '';
+  document.getElementById('cf-email').value = '';
+  document.getElementById('cf-mensaje').value = '';
+  showToast('✅ Mensaje enviado. Te responderemos pronto.');
+}
+
+/* ══════════════════════════════════════════════════
+   MOBILE MENU
+   ══════════════════════════════════════════════════ */
+function toggleMenu() {
+  const h = document.getElementById('hamburger');
+  const m = document.getElementById('mobile-menu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+
+// Close mobile menu on outside click
+document.addEventListener('click', e => {
+  const h = document.getElementById('hamburger');
+  const m = document.getElementById('mobile-menu');
+  if (m && m.classList.contains('open') && !m.contains(e.target) && !h.contains(e.target)) {
+    h.classList.remove('open'); m.classList.remove('open'); document.body.style.overflow = '';
+  }
+});
+
+/* ══════════════════════════════════════════════════
+   SCROLL REVEAL
+   ══════════════════════════════════════════════════ */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => revealObs.observe(el));
+
+/* ══════════════════════════════════════════════════
+   WELCOME POPUP
+   ══════════════════════════════════════════════════ */
+function closePopup() { document.getElementById('popup-overlay').classList.remove('show'); }
+
+function claimDiscount() {
+  const email = document.getElementById('popup-email').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('popup-email').style.borderColor = 'var(--red)';
+    return;
+  }
+  closePopup();
+  showToast('🎁 Código BIENVENIDO10 enviado a ' + email);
+}
+
+setTimeout(() => {
+  if (!sessionStorage.getItem('popup_shown')) {
+    document.getElementById('popup-overlay').classList.add('show');
+    sessionStorage.setItem('popup_shown','1');
+  }
+}, 5000);
+
+/* ══════════════════════════════════════════════════
+   AUTH SYSTEM — passwords hashed, no plaintext
+   ══════════════════════════════════════════════════ */
+let currentUser = JSON.parse(localStorage.getItem('mmf_user') || 'null');
+
+// Simple hash (not cryptographic — for real app use bcrypt on server)
+async function hashPw(pw) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw + 'mmf_salt_2025'));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function initAuth() {
+  if (currentUser) { renderLoggedIn(); updateMobileAuthItem(); }
+  renderCart(); // restore persisted cart
+}
+
+function renderLoggedIn() {
+  const btn  = document.getElementById('auth-nav-btn');
+  const initials = (currentUser.nombre[0] + (currentUser.apellido ? currentUser.apellido[0] : '')).toUpperCase();
+  btn.innerHTML = `<div class="user-avatar">${initials}</div><span id="auth-btn-label">${currentUser.nombre}</span>`;
+  btn.classList.add('logged');
+  document.getElementById('dropdown-name').textContent  = currentUser.nombre + ' ' + (currentUser.apellido||'');
+  document.getElementById('dropdown-email').textContent = currentUser.email;
+}
+
+function updateMobileAuthItem() {
+  const el = document.getElementById('mob-auth-name');
+  const sub = document.getElementById('mob-auth-sub');
+  if (!el) return;
+  if (currentUser) {
+    el.textContent  = currentUser.nombre + ' ' + (currentUser.apellido||'');
+    sub.textContent = currentUser.email;
+  } else {
+    el.textContent  = 'Iniciar sesión';
+    sub.textContent = 'o Crear cuenta gratis';
+  }
+}
+
+function handleAuthClick() {
+  if (currentUser) document.getElementById('user-dropdown').classList.toggle('show');
+  else openAuth('login');
+}
+
+document.addEventListener('click', e => {
+  const dd  = document.getElementById('user-dropdown');
+  const btn = document.getElementById('auth-nav-btn');
+  if (dd && !dd.contains(e.target) && btn && !btn.contains(e.target)) dd.classList.remove('show');
+});
+
+function openAuth(tab) {
+  document.getElementById('auth-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+  switchAuthTab(tab||'login');
+}
+function closeAuth() {
+  document.getElementById('auth-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+function authOverlayClick(e) { if (e.target === document.getElementById('auth-overlay')) closeAuth(); }
+
+function switchAuthTab(tab) {
+  document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+  const tabBtn = document.getElementById('tab-'+tab+'-btn');
+  if (tabBtn) tabBtn.classList.add('active');
+  clearAuthErrors();
+}
+function showForgot() { switchAuthTab('forgot'); }
+
+function clearAuthErrors() {
+  document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('.auth-field input').forEach(i => i.classList.remove('error'));
+}
+function showErr(id, inputId) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('show');
+  if (inputId) { const inp = document.getElementById(inputId); if(inp) inp.classList.add('error'); }
+}
+
+function togglePw(inputId, btn) {
+  const inp = document.getElementById(inputId);
+  if (inp.type === 'password') { inp.type='text'; btn.textContent='🙈'; }
+  else { inp.type='password'; btn.textContent='👁️'; }
+}
+
+function checkStrength(val) {
+  const bar = document.getElementById('pw-bar');
+  const lbl = document.getElementById('pw-label');
+  let score = 0;
+  if (val.length >= 8) score++;
+  if (/[A-Z]/.test(val)) score++;
+  if (/[0-9]/.test(val)) score++;
+  if (/[^A-Za-z0-9]/.test(val)) score++;
+  const levels = [
+    {pct:'0%',   color:'#eee',     text:''},
+    {pct:'25%',  color:'#ef4444',  text:'⚠️ Muy débil'},
+    {pct:'50%',  color:'#f59e0b',  text:'⚡ Débil'},
+    {pct:'75%',  color:'#3b82f6',  text:'👍 Buena'},
+    {pct:'100%', color:'#22c55e',  text:'💪 Muy segura'},
+  ];
+  const lvl = levels[score]||levels[0];
+  bar.style.width = lvl.pct; bar.style.background = lvl.color;
+  lbl.textContent = val.length ? lvl.text : ''; lbl.style.color = lvl.color;
+}
+
+async function doLogin() {
+  clearAuthErrors();
+  const email = document.getElementById('login-email').value.trim();
+  const pass  = document.getElementById('login-pass').value;
+  let ok = true;
+  if (!email||!email.includes('@')) { showErr('login-email-err','login-email'); ok=false; }
+  if (!pass) { showErr('login-pass-err','login-pass'); ok=false; }
+  if (!ok) return;
+
+  const hash   = await hashPw(pass);
+  const stored = JSON.parse(localStorage.getItem('mmf_user')||'null');
+  if (stored && stored.email===email && stored.hash===hash) {
+    currentUser = stored;
+    loginSuccess('¡Bienvenido de vuelta, '+stored.nombre+'! 🐾','Hola de nuevo. Tus pedidos y suscripciones te esperan.');
+  } else if (stored && stored.email!==email) {
+    document.getElementById('login-email-err').textContent='No hay cuenta con ese email.';
+    showErr('login-email-err','login-email');
+  } else if (stored && stored.hash!==hash) {
+    document.getElementById('login-pass-err').textContent='Contraseña incorrecta.';
+    showErr('login-pass-err','login-pass');
+  } else {
+    // Demo mode: create session
+    currentUser = { nombre:email.split('@')[0], apellido:'', email, hash };
+    localStorage.setItem('mmf_user', JSON.stringify(currentUser));
+    loginSuccess('¡Bienvenido! 🐾','Sesión iniciada correctamente.');
+  }
+}
+
+async function doRegister() {
+  clearAuthErrors();
+  const nombre  = document.getElementById('reg-nombre').value.trim();
+  const apellido= document.getElementById('reg-apellido').value.trim();
+  const email   = document.getElementById('reg-email').value.trim();
+  const pass    = document.getElementById('reg-pass').value;
+  const pass2   = document.getElementById('reg-pass2').value;
+  const terms   = document.getElementById('reg-terms').checked;
+  let ok = true;
+  if (!nombre)               { showErr('reg-nombre-err','reg-nombre'); ok=false; }
+  if (!email||!email.includes('@')){ showErr('reg-email-err','reg-email'); ok=false; }
+  if (pass.length<8)         { showErr('reg-pass-err','reg-pass');    ok=false; }
+  if (pass!==pass2)          { showErr('reg-pass2-err','reg-pass2'); ok=false; }
+  if (!terms)                { showErr('reg-terms-err');               ok=false; }
+  if (!ok) return;
+  const hash = await hashPw(pass);
+  currentUser = { nombre, apellido, email, hash };
+  localStorage.setItem('mmf_user', JSON.stringify(currentUser));
+  loginSuccess('¡Cuenta creada! 🎉','Bienvenido/a a Mi Mascota Favorita. Tu 10% OFF ya está activo.');
+}
+
+function loginSuccess(title, msg) {
+  document.getElementById('success-title').textContent = title;
+  document.getElementById('success-msg').textContent   = msg;
+  document.getElementById('success-icon').textContent  = '🎉';
+  switchAuthTab('success');
+  renderLoggedIn();
+  updateMobileAuthItem();
+  setTimeout(closeAuth, 2200);
+  showToast('🐾 Sesión iniciada como ' + currentUser.nombre);
+}
+
+async function doForgot() {
+  clearAuthErrors();
+  const email = document.getElementById('forgot-email').value.trim();
+  if (!email||!email.includes('@')) { showErr('forgot-email-err','forgot-email'); return; }
+  document.getElementById('success-icon').textContent  = '📧';
+  document.getElementById('success-title').textContent = 'Enlace enviado';
+  document.getElementById('success-msg').textContent   = 'Revisa tu bandeja en '+email+' para restablecer tu contraseña.';
+  switchAuthTab('success');
+  setTimeout(() => switchAuthTab('login'), 3000);
+}
+
+function socialLogin(provider) {
+  const nombre = provider === 'Google' ? 'Usuario Google' : 'Usuario Facebook';
+  currentUser = { nombre, apellido:'', email:'usuario@'+provider.toLowerCase()+'.com', hash:'' };
+  localStorage.setItem('mmf_user', JSON.stringify(currentUser));
+  loginSuccess('¡Conectado con '+provider+'! 🎉','Cuenta vinculada correctamente.');
+}
+
+function logout() {
+  currentUser = null;
+  localStorage.removeItem('mmf_user');
+  document.getElementById('user-dropdown').classList.remove('show');
+  const btn = document.getElementById('auth-nav-btn');
+  btn.classList.remove('logged');
+  btn.innerHTML = '<span id="auth-btn-icon">👤</span><span id="auth-btn-label">Ingresar</span>';
+  updateMobileAuthItem();
+  showToast('Sesión cerrada correctamente');
+}
+
+/* ══════════════════════════════════════════════════
+   WISHLIST (localStorage)
+   ══════════════════════════════════════════════════ */
+let wishlist = JSON.parse(localStorage.getItem('mmf_wish')||'[]');
+function toggleWish(id) {
+  const i = wishlist.indexOf(id);
+  if (i>-1) { wishlist.splice(i,1); showToast('💔 Eliminado de favoritos'); }
+  else { wishlist.push(id); showToast('❤️ Guardado en favoritos'); }
+  localStorage.setItem('mmf_wish', JSON.stringify(wishlist));
+}
+
+/* ══════════════════════════════════════════════════
+   SHOPIFY INIT
+   ══════════════════════════════════════════════════ */
+function initShopify() {
+  const ok = !SHOPIFY_CONFIG.domain.includes('TU_') && !SHOPIFY_CONFIG.storefrontAccessToken.includes('TU_');
+  if (!ok || typeof ShopifyBuy==='undefined') return;
+  document.getElementById('shopify-setup-notice').style.display = 'none';
+  document.getElementById('demo-products').style.display       = 'none';
+  document.getElementById('shopify-products-grid').style.display = 'grid';
+  document.getElementById('filter-bar').style.display          = 'none';
+  const client = ShopifyBuy.buildClient({ domain:SHOPIFY_CONFIG.domain, storefrontAccessToken:SHOPIFY_CONFIG.storefrontAccessToken });
+  ShopifyBuy.UI.onReady(client).then(ui => {
+    ui.createComponent('collection',{
+      id:SHOPIFY_CONFIG.collectionId,
+      node:document.getElementById('shopify-products-grid'),
+      options:{
+        product:{
+          styles:{
+            button:{'background-color':'#1A4FAD','border-radius':'50px','font-family':'"Nunito",sans-serif','font-weight':'800',':hover':{'background-color':'#133A84'}},
+            title:{'font-family':'"Nunito",sans-serif','font-weight':'800','color':'#3D1F0A'},
+            price:{'color':'#D42B22','font-weight':'900'},
+          },
+          text:{button:'+ Agregar al carrito'},
+        },
+        collection:{styles:{collection:{'display':'contents'}}},
+        cart:{text:{total:'Total',button:'Finalizar compra'},styles:{button:{'background-color':'#D42B22','border-radius':'50px'}}},
+      },
+    });
+  });
+}
+
+/* ══════════════════════════════════════════════════
+   INIT
+   ══════════════════════════════════════════════════ */
+window.addEventListener('load', () => {
+  renderProductCards();
+  initAuth();
+  initShopify();
+  // Keyboard: ESC closes modals
+  document.addEventListener('keydown', e => {
+    if (e.key==='Escape') { closeModal(); closeAuth(); toggleCart(false); }
+  });
+});
+</script>
+</body>
+</html>

@@ -13,6 +13,10 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://sdks.shopifycdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.myshopify.com; frame-src https://*.myshopify.com; base-uri 'self'; form-action 'self'; object-src 'none';"/>
   <!-- frame-ancestors (anti-clickjacking) no funciona vía <meta>: configúralo como
        cabecera HTTP real (CSP frame-ancestors 'self', o X-Frame-Options: SAMEORIGIN) en el hosting. -->
+  <!-- Cuando actives el widget de Judge.me (ver más abajo antes de </head>), agrega
+       sus dominios al CSP de arriba o el navegador bloqueará el script/las peticiones:
+       script-src: https://cdn.judge.me — connect-src/img-src: https://judge.me https://cdn.judge.me -->
+
   <meta name="referrer" content="strict-origin-when-cross-origin"/>
   <!-- SEO -->
   <meta name="description" content="Mi Mascota Favorita: alimento premium 100% natural para perros y gatos. Formulado por veterinarios. Envío a todo Chile. Croquetas, snacks y dietas especiales."/>
@@ -274,16 +278,7 @@
     /* ── TESTIMONIALS ── */
     .testimonials{background:var(--bg);}
     .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.3rem;margin-top:2.5rem;}
-    .test-card{border-radius:var(--radius);padding:1.6rem;border:2px solid;}
-    .tc-b{border-color:#b6c8f7;background:var(--blue-l);}
-    .tc-r{border-color:#f7b6b3;background:var(--red-l);}
-    .tc-g{border-color:#b8dba3;background:var(--green-l);}
-    .stars{font-size:1.1rem;margin-bottom:.8rem;color:var(--yellow);}
-    .test-text{font-size:.93rem;color:var(--brown-m);line-height:1.7;margin-bottom:1.1rem;font-style:italic;}
-    .test-author{display:flex;align-items:center;gap:10px;}
-    .author-avatar{width:42px;height:42px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
-    .author-name{font-weight:700;font-size:.9rem;color:var(--brown);font-family:'Nunito',sans-serif;}
-    .author-pet{font-size:.8rem;color:var(--muted);}
+    .reviews-empty{grid-column:1/-1;text-align:center;padding:3rem 1.5rem;border-radius:var(--radius);border:2px dashed #ddd;color:var(--muted);font-size:.95rem;line-height:1.7;}
 
     /* ── NEWSLETTER ── */
     .newsletter{background:var(--red);text-align:center;}
@@ -458,26 +453,6 @@
     .brand-pill{background:var(--gray);border-radius:50px;padding:.6rem 1.4rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;color:var(--brown-m);transition:background .2s,color .2s;}
     .brand-pill:hover{background:var(--blue-l);color:var(--blue);}
     .cert-pill{background:var(--green-l);border:1.5px solid #b8dba3;border-radius:50px;padding:.6rem 1.4rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:.88rem;color:var(--green);}
-
-    /* ── SUBSCRIPTION SECTION ── */
-    .sub-section{background:var(--cream);}
-    .sub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem;margin-top:2.5rem;}
-    .sub-card{background:#fff;border-radius:20px;padding:2rem;border:2px solid #eee;text-align:center;transition:transform .2s,box-shadow .2s,border-color .2s;}
-    .sub-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,.08);}
-    .sub-card.featured{border-color:var(--blue);position:relative;}
-    .sub-featured-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-family:'Nunito',sans-serif;font-weight:800;font-size:.75rem;padding:.3rem 1rem;border-radius:50px;white-space:nowrap;}
-    .sub-icon{font-size:2.5rem;margin-bottom:1rem;display:block;}
-    .sub-name{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.15rem;color:var(--blue);margin-bottom:.3rem;}
-    .sub-freq{font-size:.82rem;color:var(--muted);margin-bottom:1rem;}
-    .sub-discount{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.8rem;color:var(--red);margin-bottom:.5rem;}
-    .sub-desc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1.3rem;}
-    .sub-btn{background:var(--blue);color:#fff;border:none;border-radius:50px;padding:.7rem 1.6rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:.9rem;cursor:pointer;transition:background .2s;width:100%;}
-    .sub-btn:hover{background:var(--blue-d);}
-    .sub-card.featured .sub-btn{background:var(--red);}
-    .sub-card.featured .sub-btn:hover{background:var(--red-d);}
-    .sub-perks{list-style:none;margin-bottom:1.2rem;text-align:left;}
-    .sub-perks li{font-size:.85rem;color:var(--brown-m);padding:.3rem 0;display:flex;align-items:center;gap:.5rem;}
-    .sub-perks li::before{content:"✓";color:var(--green);font-weight:900;flex-shrink:0;}
 
     /* ── CONTACT SECTION ── */
     .contact-section{background:var(--gray);}
@@ -665,7 +640,6 @@
       .modal-img{border-radius:24px 24px 0 0;height:200px;}
       .form-row{grid-template-columns:1fr;}
       .trust-items{gap:1rem;}
-      .sub-grid{grid-template-columns:1fr;}
     }
   
     /* ── TOAST VARIANTS ── */
@@ -682,6 +656,16 @@
     .qty-btn:last-child:hover{background:var(--red-l)!important;border-color:var(--red)!important;}
 
   </style>
+  <!-- RESEÑAS REALES (Judge.me) — este sitio es un storefront externo a Shopify
+       (headless), así que Judge.me requiere su modo "Platform-independent widgets":
+       1. Instala Judge.me en tu tienda Shopify y activa el envío automático de
+          solicitudes de reseña post-compra.
+       2. En Judge.me → Settings → Advanced → "Platform-independent Review Widget"
+          → actívalo. Te generará un <script> único para tu cuenta.
+       3. Pega ese script aquí abajo (reemplaza este comentario) y en la sección
+          de Reseñas (busca id="test-grid" en el body) coloca el <div> de widget
+          que Judge.me te indique en el mismo paso.
+       Documentación: https://judge.me/help/en/articles/8394958-platform-independent-widgets -->
 </head>
 <body>
 
@@ -731,7 +715,6 @@
         </div>
         <div class="dropdown-item" onclick="openOrders()"><span>📦</span> Mis pedidos</div>
         <a class="dropdown-item" href="#"><span>🐾</span> Mis mascotas</a>
-        <a class="dropdown-item" href="#suscripcion"><span>🔄</span> Mi suscripción</a>
         <a class="dropdown-item" href="#"><span>❤️</span> Lista de deseos</a>
         <div class="dropdown-sep"></div>
         <div class="dropdown-item danger" onclick="logout()"><span>🚪</span> Cerrar sesión</div>
@@ -756,7 +739,6 @@
   <a href="#quiz" onclick="toggleMenu()">Recomiéndame</a>
   <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
   <a href="#testimonios" onclick="toggleMenu()">Reseñas</a>
-  <a href="#suscripcion" onclick="toggleMenu()">Suscripción</a>
   <a href="#contacto-form" onclick="toggleMenu()">Contacto</a>
   <a href="#contacto" class="mob-cta">Suscribirme →</a>
 </div>
@@ -977,87 +959,21 @@
     <div class="why-card"><div class="why-icon wi-g">🌿</div><div class="why-title">100% Ingredientes naturales</div><div class="why-text">Sin colorantes artificiales, sin conservantes ni rellenos de baja calidad.</div></div>
     <div class="why-card"><div class="why-icon wi-w">👨‍⚕️</div><div class="why-title">Avalado por veterinarios</div><div class="why-text">Fórmulas certificadas por especialistas en nutrición animal.</div></div>
     <div class="why-card"><div class="why-icon wi-y">🚚</div><div class="why-title">Envío a todo Chile</div><div class="why-text">Despacho rápido con seguimiento y empaque eco-friendly a todo el país.</div></div>
-    <div class="why-card"><div class="why-icon wi-r">🔄</div><div class="why-title">Suscripción con descuento</div><div class="why-text">Elige la frecuencia de entrega y ahorra hasta 20% en cada pedido.</div></div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="testimonials reveal" id="testimonios">
   <div class="section-header">
-    <div><span class="section-tag">Reseñas</span><h2 class="section-title">Nuestros clientes adoran a sus regalones</h2></div>
+    <div><span class="section-tag">Reseñas</span><h2 class="section-title">Lo que dicen nuestros clientes</h2></div>
   </div>
-  <div class="test-grid">
-    <div class="test-card tc-b">
-      <div class="stars">★★★★★</div>
-      <p class="test-text">"Desde que cambiamos a Mi Mascota Favorita, Simba tiene el pelaje mucho más brillante y está lleno de energía. ¡Definitivamente no volvemos atrás!"</p>
-      <div class="test-author"><div class="author-avatar">👩</div><div><div class="author-name">Valentina M.</div><div class="author-pet">Dueña de Simba, Golden Retriever 🐕</div></div></div>
-    </div>
-    <div class="test-card tc-r">
-      <div class="stars">★★★★★</div>
-      <p class="test-text">"Mi gata tenía problemas digestivos hace meses. La fórmula gastrointestinal fue un cambio total. El servicio al cliente es increíble y muy rápido."</p>
-      <div class="test-author"><div class="author-avatar">👨</div><div><div class="author-name">Andrés P.</div><div class="author-pet">Dueño de Luna, Gata Siamesa 🐈</div></div></div>
-    </div>
-    <div class="test-card tc-g">
-      <div class="stars">★★★★★</div>
-      <p class="test-text">"Excelente calidad y precio justo. El envío llegó rapidísimo y el packaging es muy cuidado. Se nota que hay amor real por los animales."</p>
-      <div class="test-author"><div class="author-avatar">👩</div><div><div class="author-name">Catalina R.</div><div class="author-pet">Dueña de Tobi y Mochi 🐾</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- SUBSCRIPTION -->
-<section class="sub-section" id="suscripcion">
-  <div class="section-header" style="justify-content:center;flex-direction:column;align-items:center;text-align:center;">
-    <span class="section-tag">Plan Recurrente</span>
-    <h2 class="section-title">Suscríbete y ahorra hasta 20%</h2>
-    <p class="section-sub" style="text-align:center;margin:0 auto;">Elige la frecuencia y recibe el alimento de tu mascota sin preocuparte. Pausa o cancela cuando quieras.</p>
-  </div>
-  <div class="sub-grid reveal">
-    <div class="sub-card">
-      <span class="sub-icon">📦</span>
-      <div class="sub-name">Plan Mensual</div>
-      <div class="sub-freq">Entrega cada 30 días</div>
-      <div class="sub-discount">10% OFF</div>
-      <ul class="sub-perks">
-        <li>Entrega mensual automática</li>
-        <li>10% de descuento permanente</li>
-        <li>Envío gratis siempre</li>
-        <li>Pausa o cancela cuando quieras</li>
-      </ul>
-      <div class="sub-desc">Ideal para quienes prefieren comprar mensualmente y no quedarse sin stock.</div>
-      <button class="sub-btn" onclick="showToast('🚀 Próximamente disponible — escríbenos por WhatsApp')">Suscribirme mensual →</button>
-    </div>
-    <div class="sub-card featured">
-      <div class="sub-featured-badge">⭐ Más popular</div>
-      <span class="sub-icon">🚀</span>
-      <div class="sub-name">Plan Quincenal</div>
-      <div class="sub-freq">Entrega cada 15 días</div>
-      <div class="sub-discount">15% OFF</div>
-      <ul class="sub-perks">
-        <li>Entrega quincenal automática</li>
-        <li>15% de descuento permanente</li>
-        <li>Envío gratis siempre</li>
-        <li>Muestra de snack gratis</li>
-        <li>Pausa o cancela cuando quieras</li>
-      </ul>
-      <div class="sub-desc">El favorito de nuestros clientes. Nunca te quedarás sin alimento y ahorras más.</div>
-      <button class="sub-btn" onclick="showToast('🚀 Próximamente disponible — escríbenos por WhatsApp')">Suscribirme quincenal →</button>
-    </div>
-    <div class="sub-card">
-      <span class="sub-icon">💎</span>
-      <div class="sub-name">Plan Semanal</div>
-      <div class="sub-freq">Entrega cada 7 días</div>
-      <div class="sub-discount">20% OFF</div>
-      <ul class="sub-perks">
-        <li>Entrega semanal automática</li>
-        <li>20% de descuento permanente</li>
-        <li>Envío gratis siempre</li>
-        <li>Muestra de snack gratis</li>
-        <li>Atención preferente</li>
-        <li>Pausa o cancela cuando quieras</li>
-      </ul>
-      <div class="sub-desc">Para familias con varias mascotas o mascotas grandes. El máximo ahorro.</div>
-      <button class="sub-btn" onclick="showToast('🚀 Próximamente disponible — escríbenos por WhatsApp')">Suscribirme semanal →</button>
+  <!-- Cuando actives Judge.me (ver comentario en el <head>), reemplaza el
+       div.reviews-empty de abajo por el <div> de widget que te entregue Judge.me
+       en Settings → Advanced → Platform-independent Review Widget. -->
+  <div class="test-grid" id="test-grid">
+    <div class="reviews-empty">
+      🐾 Todavía no hay reseñas de clientes reales.<br/>
+      Sé el primero en contarnos cómo le fue a tu mascota con nuestros productos.
     </div>
   </div>
 </section>
@@ -1112,7 +1028,6 @@
             <option>Estado de mi pedido</option>
             <option>Cambios y devoluciones</option>
             <option>Asesoría nutricional</option>
-            <option>Suscripciones</option>
             <option>Otro</option>
           </select>
         </div>
@@ -1243,7 +1158,7 @@
     <!-- LOGIN PANEL -->
     <div class="auth-panel active" id="panel-login">
       <div class="auth-panel-title">¡Bienvenido de vuelta! 🐾</div>
-      <div class="auth-panel-sub">Ingresa a tu cuenta para ver tus pedidos y gestionar tu suscripción.</div>
+      <div class="auth-panel-sub">Ingresa a tu cuenta para ver el historial de tus pedidos.</div>
       <div class="auth-field">
         <label>Email</label>
         <input type="email" id="login-email" placeholder="tucorreo@ejemplo.com" autocomplete="email" maxlength="254"/>
@@ -1265,7 +1180,7 @@
     <!-- REGISTER PANEL -->
     <div class="auth-panel" id="panel-register">
       <div class="auth-panel-title">Crea tu cuenta 🎉</div>
-      <div class="auth-panel-sub">Únete y obtén 10% OFF en tu primera compra, más acceso a suscripciones.</div>
+      <div class="auth-panel-sub">Únete y obtén 10% OFF en tu primera compra.</div>
       <div class="auth-row">
         <div class="auth-field">
           <label>Nombre</label>
@@ -2125,7 +2040,7 @@ async function doLogin() {
     const customerData = await fetchCustomerByToken(accessToken);
     currentUser = { nombre: customerData.firstName || email.split('@')[0], apellido: customerData.lastName || '', email: customerData.email };
     saveCustomerSession(accessToken, expiresAt, currentUser);
-    loginSuccess('¡Bienvenido de vuelta, '+currentUser.nombre+'! 🐾','Hola de nuevo. Tus pedidos y suscripciones te esperan.');
+    loginSuccess('¡Bienvenido de vuelta, '+currentUser.nombre+'! 🐾','Hola de nuevo. Tus pedidos te esperan.');
   } catch (err) {
     showErr('login-pass-err', 'login-pass', err.message || 'No pudimos iniciar sesión. Intenta de nuevo.');
   } finally {

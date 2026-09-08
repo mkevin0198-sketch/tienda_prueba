@@ -4,6 +4,16 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mi Mascota Favorita — Nutrición, amor y cuidado para tus regalones</title>
+  <!-- SECURITY
+       Estas etiquetas mitigan XSS/clickjacking/filtración de referrer desde el propio HTML.
+       IMPORTANTE: X-Frame-Options, X-Content-Type-Options, Strict-Transport-Security y
+       Permissions-Policy NO se pueden fijar de forma fiable con <meta> — los navegadores
+       las ignoran fuera de una respuesta HTTP real. Deben configurarse en el hosting/CDN
+       (Shopify, Cloudflare, Netlify _headers, Nginx, etc.). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://sdks.shopifycdn.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.myshopify.com; frame-src https://*.myshopify.com; base-uri 'self'; form-action 'self'; object-src 'none';"/>
+  <!-- frame-ancestors (anti-clickjacking) no funciona vía <meta>: configúralo como
+       cabecera HTTP real (CSP frame-ancestors 'self', o X-Frame-Options: SAMEORIGIN) en el hosting. -->
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
   <!-- SEO -->
   <meta name="description" content="Mi Mascota Favorita: alimento premium 100% natural para perros y gatos. Formulado por veterinarios. Envío a todo Chile. Croquetas, snacks y dietas especiales."/>
   <meta name="keywords" content="alimento mascotas, croquetas perros, croquetas gatos, comida natural mascotas, tienda mascotas Chile"/>
@@ -557,6 +567,25 @@
     .auth-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,.07);border:none;border-radius:50%;width:32px;height:32px;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--brown);transition:background .2s;z-index:1;}
     .auth-close:hover{background:rgba(0,0,0,.14);}
 
+    /* ── ORDER HISTORY ── */
+    .orders-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:700;opacity:0;pointer-events:none;transition:opacity .35s;display:flex;align-items:center;justify-content:center;padding:1rem;}
+    .orders-overlay.show{opacity:1;pointer-events:all;}
+    .orders-box{background:#fff;border-radius:24px;width:100%;max-width:560px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;transform:translateY(20px);transition:transform .35s;position:relative;}
+    .orders-overlay.show .orders-box{transform:translateY(0);}
+    .orders-head{padding:1.4rem 1.8rem;background:var(--blue);display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .orders-head h3{font-family:'Nunito',sans-serif;font-weight:900;font-size:1.2rem;color:#fff;}
+    .orders-body{padding:1.4rem 1.8rem;overflow-y:auto;}
+    .orders-loading,.orders-empty{text-align:center;color:var(--muted);padding:2.5rem 1rem;font-size:.92rem;}
+    .order-card{border:1.5px solid #eee;border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1rem;}
+    .order-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.8rem;margin-bottom:.4rem;font-family:'Nunito',sans-serif;}
+    .order-date{display:block;font-size:.78rem;color:var(--muted);font-weight:400;margin-top:.15rem;}
+    .order-status{background:var(--blue-l);color:var(--blue);font-size:.75rem;font-weight:800;padding:.25rem .7rem;border-radius:50px;white-space:nowrap;}
+    .order-items{font-size:.85rem;color:var(--brown-m);margin-bottom:.6rem;}
+    .order-card-bottom{display:flex;justify-content:space-between;align-items:center;}
+    .order-total{font-family:'Nunito',sans-serif;font-weight:900;color:var(--red);}
+    .order-link{font-size:.85rem;color:var(--blue);font-weight:700;text-decoration:none;}
+    .order-link:hover{text-decoration:underline;}
+
     /* tabs */
     .auth-tabs{display:grid;grid-template-columns:1fr 1fr;}
     .auth-tab{background:var(--gray);border:none;padding:1.1rem;font-family:'Nunito',sans-serif;font-weight:800;font-size:1rem;cursor:pointer;color:var(--muted);transition:background .2s,color .2s;}
@@ -579,11 +608,7 @@
     .auth-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
     .auth-submit{width:100%;background:var(--red);color:#fff;border:none;border-radius:50px;padding:.9rem;font-family:'Nunito',sans-serif;font-weight:900;font-size:1rem;cursor:pointer;transition:background .2s,transform .15s;margin-top:.5rem;}
     .auth-submit:hover{background:var(--red-d);transform:translateY(-1px);}
-    .auth-divider{display:flex;align-items:center;gap:.8rem;margin:1rem 0;color:var(--muted);font-size:.82rem;}
-    .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:#eee;}
-    .auth-social{display:flex;gap:.6rem;}
-    .social-auth-btn{flex:1;border:1.5px solid #ddd;background:#fff;border-radius:50px;padding:.7rem;font-family:'Nunito',sans-serif;font-weight:700;font-size:.85rem;cursor:pointer;transition:background .2s,border-color .2s;display:flex;align-items:center;justify-content:center;gap:.4rem;}
-    .social-auth-btn:hover{background:var(--gray);border-color:#bbb;}
+    .auth-submit:disabled{opacity:.65;cursor:not-allowed;transform:none;}
     .auth-link{text-align:center;font-size:.83rem;color:var(--muted);margin-top:.9rem;}
     .auth-link span{color:var(--blue);font-weight:700;cursor:pointer;text-decoration:underline;}
     .auth-link span:hover{color:var(--blue-d);}
@@ -704,7 +729,7 @@
           <div class="dropdown-name" id="dropdown-name">—</div>
           <div class="dropdown-email" id="dropdown-email">—</div>
         </div>
-        <a class="dropdown-item" href="#"><span>📦</span> Mis pedidos</a>
+        <div class="dropdown-item" onclick="openOrders()"><span>📦</span> Mis pedidos</div>
         <a class="dropdown-item" href="#"><span>🐾</span> Mis mascotas</a>
         <a class="dropdown-item" href="#suscripcion"><span>🔄</span> Mi suscripción</a>
         <a class="dropdown-item" href="#"><span>❤️</span> Lista de deseos</a>
@@ -722,7 +747,7 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
-    <div class="mob-auth" onclick="openAuth('login'); toggleMenu();" id="mob-auth-item">
+    <div class="mob-auth" onclick="handleMobAuthClick()" id="mob-auth-item">
     <div class="user-avatar" style="background:var(--blue)">👤</div>
     <div><div class="mob-auth-name" id="mob-auth-name">Iniciar sesión</div><div class="mob-auth-sub" id="mob-auth-sub">o Crear cuenta gratis</div></div>
   </div>
@@ -831,7 +856,7 @@
   </div>
   <div class="search-result-bar" id="search-result-bar"></div>
   <div class="shopify-notice" id="shopify-setup-notice">
-    <strong>⚙️ Configuración Shopify</strong> — Edita <code>SHOPIFY_CONFIG</code> con tu dominio, Storefront Access Token y Collection ID para mostrar tus productos reales. Mientras tanto se muestran productos de ejemplo.
+    <strong>⚙️ Configuración Shopify</strong> — Edita <code>SHOPIFY_CONFIG</code> con tu dominio, Storefront Access Token (con permisos de clientes habilitados) y Collection ID para mostrar tus productos reales y activar cuentas de cliente con historial de pedidos. Mientras tanto se muestran productos de ejemplo y el login queda desactivado.
   </div>
   <div id="shopify-products-grid" style="display:none;"></div>
   <div class="demo-products-grid" id="demo-products">
@@ -1177,7 +1202,7 @@
 </div>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/56912345678?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos%20%F0%9F%90%BE" target="_blank" class="wa-btn" title="Escríbenos por WhatsApp">
+<a href="https://wa.me/56912345678?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos%20%F0%9F%90%BE" target="_blank" rel="noopener noreferrer" class="wa-btn" title="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 <div class="wa-tooltip">💬 ¡Escríbenos!</div>
@@ -1221,24 +1246,19 @@
       <div class="auth-panel-sub">Ingresa a tu cuenta para ver tus pedidos y gestionar tu suscripción.</div>
       <div class="auth-field">
         <label>Email</label>
-        <input type="email" id="login-email" placeholder="tucorreo@ejemplo.com"/>
+        <input type="email" id="login-email" placeholder="tucorreo@ejemplo.com" autocomplete="email" maxlength="254"/>
         <div class="field-error" id="login-email-err">Ingresa un email válido.</div>
       </div>
       <div class="auth-field">
         <label>Contraseña</label>
         <div class="password-wrap">
-          <input type="password" id="login-pass" placeholder="Tu contraseña"/>
+          <input type="password" id="login-pass" placeholder="Tu contraseña" autocomplete="current-password" maxlength="256"/>
           <button class="pw-toggle" onclick="togglePw('login-pass',this)" type="button">👁️</button>
         </div>
         <div class="field-error" id="login-pass-err">La contraseña es requerida.</div>
       </div>
       <span class="forgot-link" onclick="showForgot()">¿Olvidaste tu contraseña?</span>
       <button class="auth-submit" onclick="doLogin()">Iniciar sesión →</button>
-      <div class="auth-divider">o continúa con</div>
-      <div class="auth-social">
-        <button class="social-auth-btn" onclick="socialLogin('Google')">🔵 Google</button>
-        <button class="social-auth-btn" onclick="socialLogin('Facebook')">📘 Facebook</button>
-      </div>
       <div class="auth-link">¿No tienes cuenta? <span onclick="switchAuthTab('register')">Regístrate gratis</span></div>
     </div>
 
@@ -1249,23 +1269,23 @@
       <div class="auth-row">
         <div class="auth-field">
           <label>Nombre</label>
-          <input type="text" id="reg-nombre" placeholder="Tu nombre"/>
+          <input type="text" id="reg-nombre" placeholder="Tu nombre" autocomplete="given-name" maxlength="100"/>
           <div class="field-error" id="reg-nombre-err">Ingresa tu nombre.</div>
         </div>
         <div class="auth-field">
           <label>Apellido</label>
-          <input type="text" id="reg-apellido" placeholder="Tu apellido"/>
+          <input type="text" id="reg-apellido" placeholder="Tu apellido" autocomplete="family-name" maxlength="100"/>
         </div>
       </div>
       <div class="auth-field">
         <label>Email</label>
-        <input type="email" id="reg-email" placeholder="tucorreo@ejemplo.com"/>
+        <input type="email" id="reg-email" placeholder="tucorreo@ejemplo.com" autocomplete="email" maxlength="254"/>
         <div class="field-error" id="reg-email-err">Ingresa un email válido.</div>
       </div>
       <div class="auth-field">
         <label>Contraseña</label>
         <div class="password-wrap">
-          <input type="password" id="reg-pass" placeholder="Mínimo 8 caracteres" oninput="checkStrength(this.value)"/>
+          <input type="password" id="reg-pass" placeholder="Mínimo 8 caracteres" autocomplete="new-password" minlength="8" maxlength="256" oninput="checkStrength(this.value)"/>
           <button class="pw-toggle" onclick="togglePw('reg-pass',this)" type="button">👁️</button>
         </div>
         <div class="pw-strength"><div class="pw-strength-bar" id="pw-bar"></div></div>
@@ -1275,7 +1295,7 @@
       <div class="auth-field">
         <label>Confirmar contraseña</label>
         <div class="password-wrap">
-          <input type="password" id="reg-pass2" placeholder="Repite tu contraseña"/>
+          <input type="password" id="reg-pass2" placeholder="Repite tu contraseña" autocomplete="new-password" maxlength="256"/>
           <button class="pw-toggle" onclick="togglePw('reg-pass2',this)" type="button">👁️</button>
         </div>
         <div class="field-error" id="reg-pass2-err">Las contraseñas no coinciden.</div>
@@ -1286,11 +1306,6 @@
       </div>
       <div class="field-error" id="reg-terms-err">Debes aceptar los términos.</div>
       <button class="auth-submit" onclick="doRegister()">Crear cuenta gratis →</button>
-      <div class="auth-divider">o regístrate con</div>
-      <div class="auth-social">
-        <button class="social-auth-btn" onclick="socialLogin('Google')">🔵 Google</button>
-        <button class="social-auth-btn" onclick="socialLogin('Facebook')">📘 Facebook</button>
-      </div>
       <div class="auth-link">¿Ya tienes cuenta? <span onclick="switchAuthTab('login')">Inicia sesión</span></div>
     </div>
 
@@ -1300,7 +1315,7 @@
       <div class="auth-panel-sub">Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña.</div>
       <div class="auth-field">
         <label>Email</label>
-        <input type="email" id="forgot-email" placeholder="tucorreo@ejemplo.com"/>
+        <input type="email" id="forgot-email" placeholder="tucorreo@ejemplo.com" autocomplete="email" maxlength="254"/>
         <div class="field-error" id="forgot-email-err">Ingresa un email válido.</div>
       </div>
       <button class="auth-submit" onclick="doForgot()">Enviar enlace →</button>
@@ -1316,6 +1331,19 @@
       </div>
     </div>
 
+  </div>
+</div>
+
+<!-- ORDER HISTORY -->
+<div class="orders-overlay" id="orders-overlay" onclick="ordersOverlayClick(event)">
+  <div class="orders-box">
+    <div class="orders-head">
+      <h3>📦 Mis pedidos</h3>
+      <button class="close-btn" onclick="closeOrders()">✕</button>
+    </div>
+    <div class="orders-body" id="orders-body">
+      <div class="orders-loading">Cargando tus pedidos…</div>
+    </div>
   </div>
 </div>
 
@@ -1342,11 +1370,53 @@
 /* ══════════════════════════════════════════════════
    SHOPIFY CONFIG
    ══════════════════════════════════════════════════ */
+// El Storefront Access Token debe tener habilitados los permisos de clientes:
+// "Allow customers to log in with the customer account API" +
+// unauthenticated_read_customers / unauthenticated_write_customers.
+// Se genera en: Shopify Admin → Apps → Desarrollo de apps → tu app → Storefront API.
+// Nunca uses el Admin API token aquí: el Storefront token es público por diseño
+// (viaja en el JS del navegador), el Admin token NUNCA debe estar en código cliente.
 const SHOPIFY_CONFIG = {
   domain: 'TU_TIENDA.myshopify.com',
   storefrontAccessToken: 'TU_STOREFRONT_TOKEN',
   collectionId: 'TU_COLLECTION_ID',
+  apiVersion: '2024-10',
 };
+
+function shopifyConfigured() {
+  return !SHOPIFY_CONFIG.domain.includes('TU_') && !SHOPIFY_CONFIG.storefrontAccessToken.includes('TU_');
+}
+
+/* ══════════════════════════════════════════════════
+   SHOPIFY STOREFRONT API — helper genérico + utilidades de seguridad
+   ══════════════════════════════════════════════════ */
+async function shopifyGraphQL(query, variables) {
+  const res = await fetch(`https://${SHOPIFY_CONFIG.domain}/api/${SHOPIFY_CONFIG.apiVersion}/graphql.json`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Shopify-Storefront-Access-Token': SHOPIFY_CONFIG.storefrontAccessToken,
+    },
+    body: JSON.stringify({ query, variables }),
+  });
+  if (!res.ok) throw new Error('No pudimos conectar con la tienda. Intenta más tarde.');
+  const json = await res.json();
+  if (json.errors && json.errors.length) throw new Error(json.errors[0].message || 'Error de Shopify.');
+  return json.data;
+}
+
+// Escapa cualquier dato que venga del usuario o de Shopify antes de insertarlo con innerHTML,
+// para evitar XSS almacenado (p.ej. un nombre de cliente con "<img onerror=...>").
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+}
+
+function setBtnLoading(btn, loading, labelWhenIdle) {
+  if (!btn) return;
+  btn.disabled = loading;
+  btn.dataset.label = btn.dataset.label || labelWhenIdle || btn.textContent;
+  btn.textContent = loading ? 'Procesando…' : btn.dataset.label;
+}
 
 /* ══════════════════════════════════════════════════
    SINGLE SOURCE OF TRUTH — PRODUCTS
@@ -1874,15 +1944,35 @@ setTimeout(() => {
 }, 5000);
 
 /* ══════════════════════════════════════════════════
-   AUTH SYSTEM — passwords hashed, no plaintext
+   AUTH SYSTEM — cuentas reales vía Shopify Customer Accounts
+   (Storefront API: customerAccessTokenCreate / customerCreate / customerRecover).
+   Shopify guarda y verifica las contraseñas en su servidor — este HTML nunca
+   las almacena ni las procesa; solo reenvía lo que el usuario escribe.
    ══════════════════════════════════════════════════ */
-let currentUser = JSON.parse(localStorage.getItem('mmf_user') || 'null');
+const AUTH_SESSION_KEY = 'mmf_customer_session';
 
-// Simple hash (not cryptographic — for real app use bcrypt on server)
-async function hashPw(pw) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw + 'mmf_salt_2025'));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+// sessionStorage (no localStorage): el token de cliente desaparece al cerrar la
+// pestaña en vez de quedar indefinidamente accesible a cualquier script futuro.
+function saveCustomerSession(accessToken, expiresAt, customer) {
+  customerSession = { accessToken, expiresAt, customer };
+  sessionStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(customerSession));
 }
+function loadCustomerSession() {
+  try {
+    const raw = sessionStorage.getItem(AUTH_SESSION_KEY);
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (!data.expiresAt || new Date(data.expiresAt).getTime() <= Date.now()) {
+      sessionStorage.removeItem(AUTH_SESSION_KEY);
+      return null;
+    }
+    return data;
+  } catch { return null; }
+}
+function clearCustomerSession() { sessionStorage.removeItem(AUTH_SESSION_KEY); }
+
+let customerSession = loadCustomerSession();
+let currentUser = customerSession ? customerSession.customer : null;
 
 function initAuth() {
   if (currentUser) { renderLoggedIn(); updateMobileAuthItem(); }
@@ -1891,10 +1981,14 @@ function initAuth() {
 
 function renderLoggedIn() {
   const btn  = document.getElementById('auth-nav-btn');
-  const initials = (currentUser.nombre[0] + (currentUser.apellido ? currentUser.apellido[0] : '')).toUpperCase();
-  btn.innerHTML = `<div class="user-avatar">${initials}</div><span id="auth-btn-label">${currentUser.nombre}</span>`;
+  const initials = ((currentUser.nombre[0]||'') + (currentUser.apellido ? currentUser.apellido[0] : '')).toUpperCase();
+  // Se usa textContent para los datos del cliente (evita XSS almacenado si el
+  // nombre contiene HTML); solo las iniciales van dentro del innerHTML fijo.
+  btn.innerHTML = `<div class="user-avatar"></div><span id="auth-btn-label"></span>`;
+  btn.querySelector('.user-avatar').textContent = initials;
+  btn.querySelector('#auth-btn-label').textContent = currentUser.nombre;
   btn.classList.add('logged');
-  document.getElementById('dropdown-name').textContent  = currentUser.nombre + ' ' + (currentUser.apellido||'');
+  document.getElementById('dropdown-name').textContent  = (currentUser.nombre + ' ' + (currentUser.apellido||'')).trim();
   document.getElementById('dropdown-email').textContent = currentUser.email;
 }
 
@@ -1903,7 +1997,7 @@ function updateMobileAuthItem() {
   const sub = document.getElementById('mob-auth-sub');
   if (!el) return;
   if (currentUser) {
-    el.textContent  = currentUser.nombre + ' ' + (currentUser.apellido||'');
+    el.textContent  = (currentUser.nombre + ' ' + (currentUser.apellido||'')).trim();
     sub.textContent = currentUser.email;
   } else {
     el.textContent  = 'Iniciar sesión';
@@ -1916,6 +2010,11 @@ function handleAuthClick() {
   else openAuth('login');
 }
 
+function handleMobAuthClick() {
+  toggleMenu();
+  if (currentUser) openOrders(); else openAuth('login');
+}
+
 document.addEventListener('click', e => {
   const dd  = document.getElementById('user-dropdown');
   const btn = document.getElementById('auth-nav-btn');
@@ -1923,6 +2022,10 @@ document.addEventListener('click', e => {
 });
 
 function openAuth(tab) {
+  if (!shopifyConfigured()) {
+    showToast('⚙️ Conecta SHOPIFY_CONFIG con tu tienda real para activar cuentas de clientes.', 'warn');
+    return;
+  }
   document.getElementById('auth-overlay').classList.add('show');
   document.body.style.overflow = 'hidden';
   switchAuthTab(tab||'login');
@@ -1947,9 +2050,9 @@ function clearAuthErrors() {
   document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
   document.querySelectorAll('.auth-field input').forEach(i => i.classList.remove('error'));
 }
-function showErr(id, inputId) {
+function showErr(id, inputId, message) {
   const el = document.getElementById(id);
-  if (el) el.classList.add('show');
+  if (el) { if (message) el.textContent = message; el.classList.add('show'); }
   if (inputId) { const inp = document.getElementById(inputId); if(inp) inp.classList.add('error'); }
 }
 
@@ -1979,6 +2082,16 @@ function checkStrength(val) {
   lbl.textContent = val.length ? lvl.text : ''; lbl.style.color = lvl.color;
 }
 
+const CUSTOMER_FRAGMENT = `firstName lastName email`;
+
+async function fetchCustomerByToken(accessToken) {
+  const data = await shopifyGraphQL(
+    `query getCustomer($token: String!) { customer(customerAccessToken: $token) { ${CUSTOMER_FRAGMENT} } }`,
+    { token: accessToken }
+  );
+  return data.customer;
+}
+
 async function doLogin() {
   clearAuthErrors();
   const email = document.getElementById('login-email').value.trim();
@@ -1988,22 +2101,35 @@ async function doLogin() {
   if (!pass) { showErr('login-pass-err','login-pass'); ok=false; }
   if (!ok) return;
 
-  const hash   = await hashPw(pass);
-  const stored = JSON.parse(localStorage.getItem('mmf_user')||'null');
-  if (stored && stored.email===email && stored.hash===hash) {
-    currentUser = stored;
-    loginSuccess('¡Bienvenido de vuelta, '+stored.nombre+'! 🐾','Hola de nuevo. Tus pedidos y suscripciones te esperan.');
-  } else if (stored && stored.email!==email) {
-    document.getElementById('login-email-err').textContent='No hay cuenta con ese email.';
-    showErr('login-email-err','login-email');
-  } else if (stored && stored.hash!==hash) {
-    document.getElementById('login-pass-err').textContent='Contraseña incorrecta.';
-    showErr('login-pass-err','login-pass');
-  } else {
-    // Demo mode: create session
-    currentUser = { nombre:email.split('@')[0], apellido:'', email, hash };
-    localStorage.setItem('mmf_user', JSON.stringify(currentUser));
-    loginSuccess('¡Bienvenido! 🐾','Sesión iniciada correctamente.');
+  const btn = document.querySelector('#panel-login .auth-submit');
+  setBtnLoading(btn, true, 'Iniciar sesión →');
+  try {
+    const data = await shopifyGraphQL(
+      `mutation login($email: String!, $password: String!) {
+         customerAccessTokenCreate(input: { email: $email, password: $password }) {
+           customerAccessToken { accessToken expiresAt }
+           customerUserErrors { code message }
+         }
+       }`,
+      { email, password: pass }
+    );
+    const result = data.customerAccessTokenCreate;
+    if (result.customerUserErrors.length) {
+      // Mensaje genérico a propósito en ambos campos: decir "email no existe" vs
+      // "contraseña incorrecta" permite a un atacante enumerar cuentas registradas.
+      showErr('login-email-err', 'login-email', 'Correo o contraseña incorrectos.');
+      showErr('login-pass-err', 'login-pass', '');
+      return;
+    }
+    const { accessToken, expiresAt } = result.customerAccessToken;
+    const customerData = await fetchCustomerByToken(accessToken);
+    currentUser = { nombre: customerData.firstName || email.split('@')[0], apellido: customerData.lastName || '', email: customerData.email };
+    saveCustomerSession(accessToken, expiresAt, currentUser);
+    loginSuccess('¡Bienvenido de vuelta, '+currentUser.nombre+'! 🐾','Hola de nuevo. Tus pedidos y suscripciones te esperan.');
+  } catch (err) {
+    showErr('login-pass-err', 'login-pass', err.message || 'No pudimos iniciar sesión. Intenta de nuevo.');
+  } finally {
+    setBtnLoading(btn, false);
   }
 }
 
@@ -2022,10 +2148,44 @@ async function doRegister() {
   if (pass!==pass2)          { showErr('reg-pass2-err','reg-pass2'); ok=false; }
   if (!terms)                { showErr('reg-terms-err');               ok=false; }
   if (!ok) return;
-  const hash = await hashPw(pass);
-  currentUser = { nombre, apellido, email, hash };
-  localStorage.setItem('mmf_user', JSON.stringify(currentUser));
-  loginSuccess('¡Cuenta creada! 🎉','Bienvenido/a a Mi Mascota Favorita. Tu 10% OFF ya está activo.');
+
+  const btn = document.querySelector('#panel-register .auth-submit');
+  setBtnLoading(btn, true, 'Crear cuenta gratis →');
+  try {
+    const createData = await shopifyGraphQL(
+      `mutation register($input: CustomerCreateInput!) {
+         customerCreate(input: $input) {
+           customer { ${CUSTOMER_FRAGMENT} }
+           customerUserErrors { code message field }
+         }
+       }`,
+      { input: { firstName: nombre, lastName: apellido, email, password: pass } }
+    );
+    const createResult = createData.customerCreate;
+    if (createResult.customerUserErrors.length) {
+      const msg = createResult.customerUserErrors[0].message;
+      showErr('reg-email-err', 'reg-email', msg);
+      return;
+    }
+    // Cuenta creada en Shopify — ahora iniciamos sesión para obtener el token.
+    const loginData = await shopifyGraphQL(
+      `mutation login($email: String!, $password: String!) {
+         customerAccessTokenCreate(input: { email: $email, password: $password }) {
+           customerAccessToken { accessToken expiresAt }
+           customerUserErrors { code message }
+         }
+       }`,
+      { email, password: pass }
+    );
+    const { accessToken, expiresAt } = loginData.customerAccessTokenCreate.customerAccessToken;
+    currentUser = { nombre: createResult.customer.firstName, apellido: createResult.customer.lastName||'', email: createResult.customer.email };
+    saveCustomerSession(accessToken, expiresAt, currentUser);
+    loginSuccess('¡Cuenta creada! 🎉','Bienvenido/a a Mi Mascota Favorita. Tu 10% OFF ya está activo.');
+  } catch (err) {
+    showErr('reg-email-err', 'reg-email', err.message || 'No pudimos crear tu cuenta. Intenta de nuevo.');
+  } finally {
+    setBtnLoading(btn, false);
+  }
 }
 
 function loginSuccess(title, msg) {
@@ -2043,29 +2203,120 @@ async function doForgot() {
   clearAuthErrors();
   const email = document.getElementById('forgot-email').value.trim();
   if (!email||!email.includes('@')) { showErr('forgot-email-err','forgot-email'); return; }
+
+  const btn = document.querySelector('#panel-forgot .auth-submit');
+  setBtnLoading(btn, true, 'Enviar enlace →');
+  try {
+    await shopifyGraphQL(
+      `mutation recover($email: String!) {
+         customerRecover(email: $email) { customerUserErrors { code message } }
+       }`,
+      { email }
+    );
+  } catch (err) {
+    // No mostramos el error crudo: igual que Shopify, respondemos siempre con
+    // el mismo mensaje exista o no la cuenta, para no filtrar qué correos están registrados.
+  } finally {
+    setBtnLoading(btn, false);
+  }
   document.getElementById('success-icon').textContent  = '📧';
-  document.getElementById('success-title').textContent = 'Enlace enviado';
-  document.getElementById('success-msg').textContent   = 'Revisa tu bandeja en '+email+' para restablecer tu contraseña.';
+  document.getElementById('success-title').textContent = 'Revisa tu correo';
+  document.getElementById('success-msg').textContent   = 'Si existe una cuenta con ese correo, te enviaremos un enlace para restablecer tu contraseña.';
   switchAuthTab('success');
-  setTimeout(() => switchAuthTab('login'), 3000);
+  setTimeout(() => switchAuthTab('login'), 3500);
 }
 
-function socialLogin(provider) {
-  const nombre = provider === 'Google' ? 'Usuario Google' : 'Usuario Facebook';
-  currentUser = { nombre, apellido:'', email:'usuario@'+provider.toLowerCase()+'.com', hash:'' };
-  localStorage.setItem('mmf_user', JSON.stringify(currentUser));
-  loginSuccess('¡Conectado con '+provider+'! 🎉','Cuenta vinculada correctamente.');
-}
-
-function logout() {
+async function logout() {
+  const token = customerSession && customerSession.accessToken;
   currentUser = null;
-  localStorage.removeItem('mmf_user');
+  customerSession = null;
+  clearCustomerSession();
   document.getElementById('user-dropdown').classList.remove('show');
   const btn = document.getElementById('auth-nav-btn');
   btn.classList.remove('logged');
   btn.innerHTML = '<span id="auth-btn-icon">👤</span><span id="auth-btn-label">Ingresar</span>';
   updateMobileAuthItem();
   showToast('Sesión cerrada correctamente');
+  // Revoca el token en el servidor de Shopify (no solo lo borramos localmente)
+  // para que quede inválido de inmediato aunque alguien lo hubiera copiado.
+  if (token) {
+    try {
+      await shopifyGraphQL(
+        `mutation revoke($token: String!) { customerAccessTokenDelete(customerAccessToken: $token) { deletedAccessToken } }`,
+        { token }
+      );
+    } catch { /* best-effort */ }
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   HISTORIAL DE PEDIDOS — Shopify Storefront API
+   ══════════════════════════════════════════════════ */
+async function openOrders() {
+  document.getElementById('user-dropdown').classList.remove('show');
+  if (!currentUser || !customerSession) { openAuth('login'); return; }
+  document.getElementById('orders-overlay').classList.add('show');
+  document.body.style.overflow = 'hidden';
+  const body = document.getElementById('orders-body');
+  body.innerHTML = '<div class="orders-loading">Cargando tus pedidos…</div>';
+  try {
+    const data = await shopifyGraphQL(
+      `query getOrders($token: String!) {
+         customer(customerAccessToken: $token) {
+           orders(first: 20, sortKey: PROCESSED_AT, reverse: true) {
+             edges { node {
+               id orderNumber processedAt financialStatus fulfillmentStatus statusUrl
+               totalPriceV2 { amount currencyCode }
+               lineItems(first: 3) { edges { node { title quantity } } }
+             } }
+           }
+         }
+       }`,
+      { token: customerSession.accessToken }
+    );
+    const orders = (data.customer && data.customer.orders.edges) || [];
+    renderOrders(orders);
+  } catch (err) {
+    // El token pudo expirar o ser revocado entre medio — forzamos re-login en vez
+    // de mostrar un estado roto.
+    body.innerHTML = '<div class="orders-empty">Tu sesión expiró. Vuelve a iniciar sesión para ver tus pedidos.</div>';
+    logout();
+  }
+}
+function closeOrders() {
+  document.getElementById('orders-overlay').classList.remove('show');
+  document.body.style.overflow = '';
+}
+function ordersOverlayClick(e) { if (e.target === document.getElementById('orders-overlay')) closeOrders(); }
+
+const ORDER_STATUS_ES = { FULFILLED:'Enviado', UNFULFILLED:'Preparando', PARTIALLY_FULFILLED:'Parcialmente enviado', PAID:'Pagado', PENDING:'Pendiente', REFUNDED:'Reembolsado' };
+
+function renderOrders(edges) {
+  const body = document.getElementById('orders-body');
+  if (!edges.length) {
+    body.innerHTML = '<div class="orders-empty">🐾 Aún no tienes pedidos. ¡Explora los productos y haz el primero!</div>';
+    return;
+  }
+  body.innerHTML = '';
+  edges.forEach(({ node }) => {
+    const items = node.lineItems.edges.map(e => `${e.node.quantity}× ${escapeHtml(e.node.title)}`).join(', ');
+    const total = Number(node.totalPriceV2.amount).toLocaleString('es-CL');
+    const date  = new Date(node.processedAt).toLocaleDateString('es-CL', { day:'2-digit', month:'short', year:'numeric' });
+    const status = ORDER_STATUS_ES[node.fulfillmentStatus] || ORDER_STATUS_ES[node.financialStatus] || node.financialStatus;
+    const card = document.createElement('div');
+    card.className = 'order-card';
+    card.innerHTML = `
+      <div class="order-card-top">
+        <div><strong>Pedido #${escapeHtml(String(node.orderNumber))}</strong><span class="order-date">${escapeHtml(date)}</span></div>
+        <span class="order-status">${escapeHtml(status)}</span>
+      </div>
+      <div class="order-items">${escapeHtml(items)}</div>
+      <div class="order-card-bottom">
+        <span class="order-total">$${total} ${escapeHtml(node.totalPriceV2.currencyCode)}</span>
+        <a class="order-link" href="${escapeHtml(node.statusUrl)}" target="_blank" rel="noopener noreferrer">Ver detalle →</a>
+      </div>`;
+    body.appendChild(card);
+  });
 }
 
 /* ══════════════════════════════════════════════════

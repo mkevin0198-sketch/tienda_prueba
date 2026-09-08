@@ -37,7 +37,7 @@
   <meta name="twitter:title" content="Mi Mascota Favorita"/>
   <meta name="twitter:description" content="Alimento premium 100% natural para tus regalones."/>
   <!-- Schema.org -->
-  <script type="application/ld+json">
+  <script type="application/ld+json" id="schema-org">
   {"@context":"https://schema.org","@type":"PetStore","name":"Mi Mascota Favorita","description":"Tienda de alimentos premium para mascotas","url":"https://mimascotafavorita.cl","telephone":"+56912345678","address":{"@type":"PostalAddress","addressCountry":"CL","addressRegion":"Región Metropolitana"},"openingHours":"Mo-Fr 09:00-18:00","priceRange":"$$"}
   </script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>"/>
@@ -1002,15 +1002,15 @@
       <h3>Estamos para ayudarte 🐾</h3>
       <p>Nuestro equipo de expertos en nutrición animal está listo para resolver todas tus dudas sobre los productos, ingredientes, envíos y más.</p>
       <div class="contact-items">
-        <div class="contact-item"><div class="contact-item-icon ci-blue">📞</div><span>+56 9 1234 5678</span></div>
-        <div class="contact-item"><div class="contact-item-icon ci-green">📧</div><span>hola@mimascotafavorita.cl</span></div>
-        <div class="contact-item"><div class="contact-item-icon ci-yellow">🕐</div><span>Lunes a Viernes, 9:00 – 18:00 hrs</span></div>
-        <div class="contact-item"><div class="contact-item-icon ci-blue">📍</div><span>Santiago, Chile — Envíos a todo el país</span></div>
+        <div class="contact-item"><div class="contact-item-icon ci-blue">📞</div><span id="info-phone">+56 9 1234 5678</span></div>
+        <div class="contact-item"><div class="contact-item-icon ci-green">📧</div><span id="info-email">hola@mimascotafavorita.cl</span></div>
+        <div class="contact-item"><div class="contact-item-icon ci-yellow">🕐</div><span id="info-hours">Lunes a Viernes, 9:00 – 18:00 hrs</span></div>
+        <div class="contact-item"><div class="contact-item-icon ci-blue">📍</div><span id="info-address">Santiago, Chile — Envíos a todo el país</span></div>
       </div>
       <div class="contact-socials">
-        <a href="#" class="social-btn">📷 Instagram</a>
-        <a href="#" class="social-btn">👤 Facebook</a>
-        <a href="https://wa.me/56912345678" class="social-btn">💬 WhatsApp</a>
+        <a href="#" id="social-instagram" class="social-btn">📷 Instagram</a>
+        <a href="#" id="social-facebook" class="social-btn">👤 Facebook</a>
+        <a href="https://wa.me/56912345678" id="social-whatsapp" class="social-btn">💬 WhatsApp</a>
       </div>
     </div>
     <div class="contact-form-box">
@@ -1117,7 +1117,7 @@
 </div>
 
 <!-- WHATSAPP -->
-<a href="https://wa.me/56912345678?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos%20%F0%9F%90%BE" target="_blank" rel="noopener noreferrer" class="wa-btn" title="Escríbenos por WhatsApp">
+<a href="https://wa.me/56912345678?text=Hola!%20Quiero%20consultar%20sobre%20sus%20productos%20%F0%9F%90%BE" id="wa-float-btn" target="_blank" rel="noopener noreferrer" class="wa-btn" title="Escríbenos por WhatsApp">
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 <div class="wa-tooltip">💬 ¡Escríbenos!</div>
@@ -1282,6 +1282,62 @@
 </div>
 
 <script>
+/* ══════════════════════════════════════════════════
+   DATOS DEL NEGOCIO — edita solo aquí para actualizar el sitio completo
+   (teléfono, email, dirección, horario y redes sociales se aplican solos
+   a la sección de contacto, el pie de página, el botón de WhatsApp y los
+   datos de SEO/schema.org al cargar la página — no busques ni edites esos
+   textos en ningún otro lugar del archivo).
+   ══════════════════════════════════════════════════ */
+const SITE_INFO = {
+  phoneDisplay: '+56 9 1234 5678',            // cómo se muestra en pantalla
+  whatsappNumber: '56912345678',              // solo dígitos, con código de país, sin "+" ni espacios
+  email: 'hola@mimascotafavorita.cl',
+  address: 'Santiago, Chile — Envíos a todo el país',
+  hours: 'Lunes a Viernes, 9:00 – 18:00 hrs',
+  hoursSchema: 'Mo-Fr 09:00-18:00',           // formato fijo que exige schema.org, no cambiar el patrón
+  social: {
+    // Deja '' (vacío) en cualquiera de estas para que ese botón no se muestre.
+    instagram: '',
+    facebook: '',
+  },
+};
+
+function applySiteInfo() {
+  const s = SITE_INFO;
+  const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text; };
+  const setHref = (id, href) => { const el = document.getElementById(id); if (el) el.href = href; };
+
+  setText('info-phone', s.phoneDisplay);
+  setText('info-email', s.email);
+  setText('info-hours', s.hours);
+  setText('info-address', s.address);
+
+  const waMessage = encodeURIComponent('Hola! Quiero consultar sobre sus productos 🐾');
+  setHref('social-whatsapp', `https://wa.me/${s.whatsappNumber}`);
+  setHref('wa-float-btn', `https://wa.me/${s.whatsappNumber}?text=${waMessage}`);
+
+  const toggleSocial = (id, url) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (url) { el.href = url; el.style.display = ''; }
+    else { el.style.display = 'none'; }
+  };
+  toggleSocial('social-instagram', s.social.instagram);
+  toggleSocial('social-facebook', s.social.facebook);
+
+  // Mantiene el schema.org (SEO) sincronizado con estos mismos datos.
+  const schema = document.getElementById('schema-org');
+  if (schema) {
+    try {
+      const data = JSON.parse(schema.textContent);
+      data.telephone = '+' + s.whatsappNumber;
+      data.openingHours = s.hoursSchema;
+      schema.textContent = JSON.stringify(data);
+    } catch { /* si el schema no es JSON válido, no lo tocamos */ }
+  }
+}
+
 /* ══════════════════════════════════════════════════
    SHOPIFY CONFIG
    ══════════════════════════════════════════════════ */
@@ -2280,6 +2336,7 @@ function initShopify() {
    INIT
    ══════════════════════════════════════════════════ */
 window.addEventListener('load', () => {
+  applySiteInfo();
   renderProductCards();
   initAuth();
   initShopify();
